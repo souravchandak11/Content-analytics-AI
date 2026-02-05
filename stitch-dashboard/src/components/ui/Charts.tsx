@@ -23,6 +23,27 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     return null;
 };
 
+// Formatting helpers
+const formatMillions = (value: number | string | undefined) => {
+    if (typeof value === 'number') return `${(value / 1000000).toFixed(1)}M`;
+    return '';
+};
+
+const formatThousands = (value: number | string | undefined) => {
+    if (typeof value === 'number') return `${(value / 1000).toFixed(0)}K`;
+    return '';
+};
+
+const formatPercent = (value: number | string | undefined) => {
+    if (typeof value === 'number') return `${value}%`;
+    return '';
+};
+
+const formatValue = (value: number | string | undefined) => {
+    if (typeof value === 'number') return value.toString();
+    return value ? value.toString() : '';
+};
+
 // Animated Growth Chart
 interface GrowthChartProps {
     data: { name: string; value: number }[];
@@ -50,13 +71,13 @@ export const GrowthChart: React.FC<GrowthChartProps> = ({ data, color = "#2d6a6d
                         dataKey="name"
                         axisLine={false}
                         tickLine={false}
-                        tick={{ fontSize: 10, fill: '#666', fontWeight: 600, textTransform: 'uppercase' }}
+                        tick={{ fontSize: 10, fill: '#666', fontWeight: 600 }}
                     />
                     <YAxis
                         axisLine={false}
                         tickLine={false}
                         tick={{ fontSize: 10, fill: '#666' }}
-                        tickFormatter={(value) => `${(value / 1000000).toFixed(1)}M`}
+                        tickFormatter={formatMillions}
                     />
                     <Tooltip content={<CustomTooltip />} />
                     <Area
@@ -104,7 +125,7 @@ export const EngagementBarChart: React.FC<EngagementBarChartProps> = ({ data }) 
                         axisLine={false}
                         tickLine={false}
                         tick={{ fontSize: 10, fill: '#666' }}
-                        tickFormatter={(value) => `${value}%`}
+                        tickFormatter={formatPercent}
                     />
                     <Tooltip content={<CustomTooltip />} />
                     <Bar
@@ -189,7 +210,7 @@ export const PerformanceChart: React.FC<PerformanceChartProps> = ({ data }) => {
                         axisLine={false}
                         tickLine={false}
                         tick={{ fontSize: 10, fill: '#2d6a6d' }}
-                        tickFormatter={(value) => `${(value / 1000).toFixed(0)}K`}
+                        tickFormatter={formatThousands}
                     />
                     <YAxis
                         yAxisId="right"
@@ -197,7 +218,7 @@ export const PerformanceChart: React.FC<PerformanceChartProps> = ({ data }) => {
                         axisLine={false}
                         tickLine={false}
                         tick={{ fontSize: 10, fill: '#c06c52' }}
-                        tickFormatter={(value) => `${value}%`}
+                        tickFormatter={formatPercent}
                     />
                     <Tooltip content={<CustomTooltip />} />
                     <Legend

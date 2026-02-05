@@ -3,14 +3,14 @@ import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { TrendingUp, Users, Eye, BarChart2, CheckCircle2, Star, Loader2, Youtube } from 'lucide-react';
 import MetricCard from '../components/ui/MetricCard';
-import { analyticsApi, Channel, Video } from '../lib/api';
+import { analyticsApi, Channel, Video } from '@/lib/api';
 import { PerformanceChart } from '../components/ui/Charts';
 
 const YouTubeInsights = () => {
     const [selectedChannelId, setSelectedChannelId] = useState<string | null>(null);
 
     // Fetch all channels to get an ID if not selected
-    const { data: channels } = useQuery({
+    const { data: channels } = useQuery<Channel[]>({
         queryKey: ['youtube-channels'],
         queryFn: analyticsApi.listYoutubeChannels,
     });
@@ -18,13 +18,13 @@ const YouTubeInsights = () => {
     const channelId = selectedChannelId || channels?.[0]?.channel_id;
     const selectedChannel = channels?.find((c: Channel) => c.channel_id === channelId);
 
-    const { data: youtubeData, isLoading: metricsLoading } = useQuery({
+    const { data: youtubeData, isLoading: metricsLoading } = useQuery<Channel>({
         queryKey: ['youtube-metrics', channelId],
         queryFn: () => analyticsApi.getYoutubeMetrics(channelId!),
         enabled: !!channelId,
     });
 
-    const { data: videos, isLoading: videosLoading } = useQuery({
+    const { data: videos, isLoading: videosLoading } = useQuery<Video[]>({
         queryKey: ['youtube-videos', channelId],
         queryFn: () => analyticsApi.getYoutubeVideos(channelId!),
         enabled: !!channelId,

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { BarChart3, MessageSquare, Heart, Share2, Quote, ArrowUpRight, Loader2, Youtube, TrendingUp } from 'lucide-react';
-import { analyticsApi, Channel, Video, SentimentData, Comment } from '../lib/api';
+import { analyticsApi, Channel, Video, SentimentData, Comment } from '@/lib/api';
 import { SentimentPieChart } from '../components/ui/Charts';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 
@@ -10,7 +10,7 @@ const SentimentReport = () => {
     const [selectedChannelId, setSelectedChannelId] = useState<string | null>(null);
     const [selectedVideoIndex, setSelectedVideoIndex] = useState<number>(0);
 
-    const { data: channels } = useQuery({
+    const { data: channels } = useQuery<Channel[]>({
         queryKey: ['youtube-channels'],
         queryFn: analyticsApi.listYoutubeChannels,
     });
@@ -18,7 +18,7 @@ const SentimentReport = () => {
     const channelId = selectedChannelId || channels?.[0]?.channel_id;
     const selectedChannel = channels?.find((c: Channel) => c.channel_id === channelId);
 
-    const { data: videos } = useQuery({
+    const { data: videos } = useQuery<Video[]>({
         queryKey: ['youtube-videos', channelId],
         queryFn: () => analyticsApi.getYoutubeVideos(channelId!),
         enabled: !!channelId,
@@ -27,7 +27,7 @@ const SentimentReport = () => {
     const videoId = videos?.[selectedVideoIndex]?.video_id;
     const selectedVideo = videos?.[selectedVideoIndex];
 
-    const { data: sentimentData, isLoading: sentimentLoading } = useQuery({
+    const { data: sentimentData, isLoading: sentimentLoading } = useQuery<SentimentData>({
         queryKey: ['sentiment', videoId],
         queryFn: () => analyticsApi.getVideoSentiment(videoId!),
         enabled: !!videoId,
