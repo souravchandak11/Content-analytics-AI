@@ -3,7 +3,6 @@ services:
   - type: web
     name: content-analytics-api
     runtime: docker
-    repo: https://github.com/souravchandak11/Content-analytics-AI
     plan: free
     region: oregon 
     dockerCommand: uvicorn server.main:app --host 0.0.0.0 --port 10000
@@ -21,8 +20,6 @@ services:
         sync: false
       - key: INSTAGRAM_ACCESS_TOKEN
         sync: false
-      - key: PORT
-        value: 10000
       - key: PYTHON_VERSION
         value: 3.11.0
 
@@ -30,7 +27,6 @@ services:
   - type: web
     name: content-analytics-streamlit
     runtime: docker
-    repo: https://github.com/souravchandak11/Content-analytics-AI
     plan: free
     region: oregon
     dockerContext: .
@@ -45,11 +41,15 @@ services:
       - key: PORT
         value: 8501
 
+  # Redis Cache
+  - type: redis
+    name: content-analytics-redis
+    region: oregon
+    plan: free
+
 databases:
   - name: content-analytics-db
     databaseName: content_analytics
     user: admin
     plan: free
     region: oregon
-
-date: "2024-02-05"
