@@ -45,7 +45,7 @@ const PredictiveIntelligence = () => {
     const currentSubs = selectedChannel?.subscribers || forecast?.forecast?.[0]?.yhat || 0;
     const predictedSubs = forecast?.forecast?.[forecast?.forecast?.length - 1]?.yhat || currentSubs;
     const growthPercent = ((predictedSubs - currentSubs) / currentSubs * 100).toFixed(1);
-    const predictedViews = forecast?.predicted_views || (selectedChannel?.total_views * 1.15) || 0;
+    const predictedViews = forecast?.predicted_views || (selectedChannel?.total_views ? selectedChannel.total_views * 1.15 : 0) || 0;
 
     const simulationSliders = [
         { label: "Post Frequency", value: "3 / Week" },
@@ -171,7 +171,12 @@ const PredictiveIntelligence = () => {
                                             border: '1px solid #333',
                                             fontFamily: 'serif'
                                         }}
-                                        formatter={(value: number) => [(value / 1000000).toFixed(2) + 'M', 'Subscribers']}
+                                        formatter={(value: any) => {
+                                            if (typeof value === 'number') {
+                                                return [(value / 1000000).toFixed(2) + 'M', 'Subscribers'];
+                                            }
+                                            return [value, 'Subscribers'];
+                                        }}
                                     />
                                     <Area
                                         type="monotone"
