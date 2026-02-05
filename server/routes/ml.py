@@ -31,15 +31,40 @@ class TrainRequest(BaseModel):
     viral_threshold: float = 2.0
 
 
-# Initialize ML models
-viral_predictor = ViralPredictor()
-forecaster = GrowthForecaster()
-sentiment_analyzer = SentimentAnalyzer()
+# Lazy loaded ML models
+_viral_predictor: Optional[ViralPredictor] = None
+_forecaster: Optional[GrowthForecaster] = None
+_sentiment_analyzer: Optional[SentimentAnalyzer] = None
+
+
+def get_viral_predictor() -> ViralPredictor:
+    """Lazy load viral predictor."""
+    global _viral_predictor
+    if _viral_predictor is None:
+        _viral_predictor = ViralPredictor()
+    return _viral_predictor
+
+
+def get_forecaster() -> GrowthForecaster:
+    """Lazy load forecaster."""
+    global _forecaster
+    if _forecaster is None:
+        _forecaster = GrowthForecaster()
+    return _forecaster
+
+
+def get_sentiment_analyzer() -> SentimentAnalyzer:
+    """Lazy load sentiment analyzer."""
+    global _sentiment_analyzer
+    if _sentiment_analyzer is None:
+        _sentiment_analyzer = SentimentAnalyzer()
+    return _sentiment_analyzer
 
 
 @router.post("/predict/viral")
 async def predict_viral(video: VideoForPrediction):
     """Predict viral potential for a video."""
+    viral_predictor = get_viral_predictor()
     prediction = viral_predictor.predict(video.model_dump())
     return prediction
 
@@ -76,6 +101,7 @@ async def train_viral_model(request: TrainRequest):
             for v in videos
         ]
         
+        viral_predictor = get_viral_predictor()
         metrics = viral_predictor.train(videos_data, viral_threshold=request.viral_threshold)
         return metrics
 
@@ -100,6 +126,7 @@ async def forecast_subscribers(
             for s in snapshots
         ]
         
+        forecaster = get_forecaster()
         forecast = forecaster.forecast_subscribers(historical, periods=periods)
         return forecast
 
@@ -124,6 +151,7 @@ async def forecast_views(
             for s in snapshots
         ]
         
+        forecaster = get_forecaster()
         forecast = forecaster.forecast_views(historical, periods=periods)
         return forecast
 
@@ -144,6 +172,7 @@ async def analyze_video_sentiment(
             }
         
         comments_data = [{'text': c.text} for c in comments]
+        sentiment_analyzer = get_sentiment_analyzer()
         analysis = sentiment_analyzer.get_sentiment_summary(comments_data)
         
         return {
@@ -159,6 +188,7 @@ async def analyze_text_sentiment(texts: List[str]):
         raise HTTPException(status_code=400, detail="No texts provided")
     
     results = []
+    sentiment_analyzer = get_sentiment_analyzer()
     for text in texts[:100]:  # Limit to 100 texts
         result = sentiment_analyzer.analyze_text(text)
         results.append({
@@ -183,6 +213,10 @@ async def analyze_text_sentiment(texts: List[str]):
 @router.get("/model/status")
 async def get_model_status():
     """Get status of ML models."""
+    """Get status of ML models."""
+    viral_predictor = get_viral_predictor()
+    forecaster = get_forecaster()
+    
     return {
         "viral_predictor": {
             "loaded": viral_predictor.model is not None,
