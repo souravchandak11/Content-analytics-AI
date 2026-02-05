@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Executive Overview | Editorial Edition</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&amp;family=Inter:wght@300;400;500;600&amp;family=Crimson+Pro:ital,wght@0,400;0,600;1,400&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style type="text/tailwindcss">
+        :root {
+            --bg-offwhite: #fdfbf7;
+            --text-charcoal: #121212;
+            --accent-teal: #2d6a6d;
+            --accent-terracotta: #c06c52;
+            --muted-gray: #71717a;
+            --border-ink: #262626;
+            --border-soft: #e5e5e1;
+        }
+        body {
+            background-color: var(--bg-offwhite);
+            color: var(--text-charcoal);
+            font-family: 'Inter', sans-serif;
+        }
+        .serif-display {
+            font-family: 'Playfair Display', serif;
+        }
+        .serif-text {
+            font-family: 'Crimson Pro', serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        .magazine-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+        }
+        .dropcap::first-letter {
+            float: left;
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            line-height: 0.8;
+            padding-right: 0.5rem;
+            color: var(--accent-terracotta);
+        }
+        .paper-shadow {
+            box-shadow: 0 10px 30px -15px rgba(0,0,0,0.1);
+        }
+        
+        /* Enhanced animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .animate-fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-slide-in {
+            animation: slideIn 0.6s ease-out forwards;
+        }
+        
+        .stat-card {
+            animation: countUp 0.6s ease-out forwards;
+        }
+        
+        .stat-card:nth-child(1) { animation-delay: 0.1s; }
+        .stat-card:nth-child(2) { animation-delay: 0.2s; }
+        .stat-card:nth-child(3) { animation-delay: 0.3s; }
+        .stat-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        .article-card {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .article-card:nth-child(1) { animation-delay: 0.2s; }
+        .article-card:nth-child(2) { animation-delay: 0.4s; }
+        .article-card:nth-child(3) { animation-delay: 0.6s; }
+        
+        /* Chart animation */
+        .chart-line {
+            stroke-dasharray: 3000;
+            stroke-dashoffset: 3000;
+            animation: drawLine 2s ease-out forwards;
+        }
+        
+        @keyframes drawLine {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        /* Hover effects */
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-teal);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile menu styles */
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(253, 251, 247, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 40;
+            border-bottom: 1px solid var(--border-soft);
+        }
+        
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2d6a6d",
+                        secondary: "#c06c52",
+                        charcoal: "#121212",
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="selection:bg-secondary/20 min-h-screen flex flex-col">
+    <nav class="sticky top-0 z-50 bg-[#fdfbf7]/90 backdrop-blur-md border-b border-[var(--border-soft)]">
+        <div class="max-w-[1400px] mx-auto px-8 lg:px-16 flex items-center justify-between h-20">
+            <div class="flex items-center gap-12">
+                <div class="flex flex-col leading-none">
+                    <span class="serif-display text-2xl font-black tracking-tighter uppercase italic">The Creator</span>
+                    <span class="text-[9px] uppercase tracking-[0.4em] font-semibold text-secondary">Quarterly
+                        Analytics</span>
+                </div>
+                <div
+                    class="hidden lg:flex items-center gap-8 text-[10px] uppercase tracking-[0.25em] font-medium text-charcoal/60">
+                    <a class="nav-link text-charcoal border-b-2 border-primary" href="#overview">Overview</a>
+                    <a class="nav-link hover:text-primary transition-colors" href="#youtube">YouTube</a>
+                    <a class="nav-link hover:text-primary transition-colors" href="#instagram">Instagram</a>
+                    <a class="nav-link hover:text-primary transition-colors" href="#predictions">ML Predictions</a>
+                    <a class="nav-link hover:text-primary transition-colors" href="#sentiment">Sentiment</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-8">
+                <div class="hidden sm:flex flex-col items-end">
+                    <span class="text-[10px] uppercase tracking-widest font-bold">Vol. 24 • No. 08</span>
+                    <span class="text-[9px] text-muted-gray uppercase italic">Last 30 Days Portfolio</span>
+                </div>
+                <div class="flex items-center gap-5 border-l border-charcoal/10 pl-8">
+                    <button id="menu-toggle"
+                        class="material-symbols-outlined text-2xl cursor-pointer hover:text-primary transition-colors">menu</button>
+                    <div
+                        class="w-10 h-10 rounded-full grayscale border border-charcoal/20 overflow-hidden hover:grayscale-0 transition-all cursor-pointer">
+                        <img alt="User" class="w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxgbEEMm4yJMKWcjIqVVQgkoyewzUqoNVLNUsKIWVRwzxttHQY9NLIxR33sV7UrPpMZRyMDSg8yKRHl1C60Kic-lvA7hZfOQKGK6SZ6Uo8RSUNqHO9aevl1qOENyWjxR5YIByNN77nN29O0pMF1HY_3Y-mbyROrUt2SVa_prXWdQvPZgr9Vq4xbXhuUzNLAHkxQ21xdiiOf_fTolcEI7arG08DQuHjTf6-Z7I4NKTBtSP2mhMLqgDfZt8RLeRMupmmpUr9C1u2PaO-" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu lg:hidden">
+        <div class="flex flex-col gap-6 text-sm uppercase tracking-[0.2em] font-medium">
+            <a class="text-charcoal hover:text-primary transition-colors" href="#overview">Overview</a>
+            <a class="hover:text-primary transition-colors" href="#youtube">YouTube</a>
+            <a class="hover:text-primary transition-colors" href="#instagram">Instagram</a>
+            <a class="hover:text-primary transition-colors" href="#predictions">ML Predictions</a>
+            <a class="hover:text-primary transition-colors" href="#sentiment">Sentiment</a>
+        </div>
+    </div>
+
+    <main class="max-w-[1400px] mx-auto px-8 lg:px-16 py-16 flex-grow">
+        <header id="overview" class="mb-24 border-b-2 border-charcoal pb-12 animate-fade-in">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+                <div class="lg:col-span-8">
+                    <div class="mb-4 flex items-center gap-4">
+                        <span class="h-px w-12 bg-secondary"></span>
+                        <span class="text-xs uppercase tracking-[0.3em] text-secondary font-bold">Command Center
+                            Report</span>
+                    </div>
+                    <h1 class="serif-display text-7xl lg:text-[110px] font-black leading-[0.9] tracking-tighter">
+                        Executive<br /><span class="italic text-primary">Overview</span></h1>
+                </div>
+                <div class="lg:col-span-4 lg:text-right">
+                    <div class="serif-text text-xl italic text-charcoal/70 mb-6 leading-relaxed">
+                        "A visual narrative of cross-platform performance and digital influence for the modern creative
+                        professional."
+                    </div>
+                    <div class="flex flex-col lg:items-end gap-2">
+                        <p class="text-[10px] uppercase tracking-[0.2em] font-bold">Prepared for Alex Rivera</p>
+                        <div class="flex items-center gap-4 text-[9px] uppercase tracking-widest text-muted-gray">
+                            <span>Status: Executive</span>
+                            <span>•</span>
+                            <span id="current-date">Edition: August 2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Key Metrics Section -->
+        <section id="metrics" class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-32">
+            <div class="border-t border-charcoal pt-6 stat-card opacity-0">
+                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary block mb-6">Total
+                    Audience</span>
+                <div class="flex flex-col">
+                    <span class="serif-display text-6xl font-black" id="stat-audience">485.7M</span>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="material-symbols-outlined text-primary">north_east</span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-primary">+12.4% Momentum</span>
+                    </div>
+                </div>
+                <p class="serif-text mt-6 text-charcoal/60 leading-relaxed italic">Massive scale expansion driven by
+                    international market penetration.</p>
+            </div>
+            <div class="border-t border-charcoal pt-6 stat-card opacity-0">
+                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary block mb-6">Total
+                    Reach</span>
+                <div class="flex flex-col">
+                    <span class="serif-display text-6xl font-black" id="stat-reach">115.2B</span>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="material-symbols-outlined text-primary">north_east</span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-primary">+8.2% Velocity</span>
+                    </div>
+                </div>
+                <p class="serif-text mt-6 text-charcoal/60 leading-relaxed italic">Algorithmic favoritism peaking across
+                    long-form and short-form sectors.</p>
+            </div>
+            <div class="border-t border-charcoal pt-6 stat-card opacity-0">
+                <span
+                    class="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary block mb-6">Engagement</span>
+                <div class="flex flex-col">
+                    <span class="serif-display text-6xl font-black" id="stat-engagement">4.2%</span>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="material-symbols-outlined text-primary">north_east</span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-primary">+0.4% Intensity</span>
+                    </div>
+                </div>
+                <p class="serif-text mt-6 text-charcoal/60 leading-relaxed italic">Quality of interaction remains above
+                    industry standard for the current niche.</p>
+            </div>
+            <div class="border-t border-charcoal pt-6 stat-card opacity-0">
+                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary block mb-6">Asset
+                    Value</span>
+                <div class="flex flex-col">
+                    <span class="serif-display text-6xl font-black" id="stat-value">$85.5K</span>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="material-symbols-outlined text-primary">north_east</span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-primary">+12% Equity</span>
+                    </div>
+                </div>
+                <p class="serif-text mt-6 text-charcoal/60 leading-relaxed italic">Estimated brand capital based on
+                    current algorithmic velocity and sentiment.</p>
+            </div>
+        </section>
+
+        <!-- Chart Section -->
+        <section id="chart-section" class="mb-32">
+            <div class="grid lg:grid-cols-12 gap-16">
+                <div class="lg:col-span-3">
+                    <h3 class="serif-display text-4xl font-bold leading-[1.1] mb-6">Execution Velocity Analytics</h3>
+                    <p class="serif-text text-lg leading-relaxed text-charcoal/80 mb-8">
+                        Interactive analysis of subscriber growth and engagement trajectory across all managed digital
+                        assets.
+                    </p>
+                    <div class="space-y-4">
+                        <div
+                            class="p-4 border border-charcoal/10 bg-white hover:border-primary transition-colors cursor-pointer group">
+                            <span class="text-[10px] font-black uppercase tracking-widest block mb-1">Growth
+                                Forecast</span>
+                            <span
+                                class="text-xl font-bold serif-display text-primary group-hover:translate-x-1 transition-transform inline-block"
+                                id="forecast-growth">+12.4% Predicted</span>
+                        </div>
+                        <div
+                            class="p-4 border border-charcoal/10 bg-white hover:border-secondary transition-colors cursor-pointer group">
+                            <span class="text-[10px] font-black uppercase tracking-widest block mb-1">Retention
+                                Index</span>
+                            <span class="text-xl font-bold serif-display text-secondary" id="retention-index">94.2%
+                                Stability</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-9">
+                    <div class="bg-white border border-charcoal p-12 paper-shadow">
+                        <div class="flex justify-between items-end mb-8">
+                            <div>
+                                <span class="text-[10px] font-black uppercase tracking-[0.4em] mb-1">Dynamic Growth
+                                    trajectory</span>
+                                <span class="serif-text italic text-muted-gray text-sm">Real-time algorithmic
+                                    performance data</span>
+                            </div>
+                            <div class="flex gap-4">
+                                <button
+                                    class="chart-toggle text-[9px] font-bold uppercase tracking-widest px-3 py-1 border border-charcoal/20 hover:bg-primary hover:text-white transition-all"
+                                    data-metric="views">Views</button>
+                                <button
+                                    class="chart-toggle text-[9px] font-bold uppercase tracking-widest px-3 py-1 bg-charcoal text-white"
+                                    data-metric="subscribers">Subscribers</button>
+                            </div>
+                        </div>
+                        <div class="h-[400px]">
+                            <canvas id="growthChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Feed Section -->
+        <section id="content-feed">
+            <div
+                class="flex flex-col md:flex-row md:items-baseline justify-between mb-16 border-b border-charcoal pb-6">
+                <h3 class="serif-display text-5xl font-black italic">Recent Editorial Feed</h3>
+                <p class="text-xs font-bold uppercase tracking-[0.3em] mt-4 md:mt-0">The Latest Creative Dispatches</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-20">
+                <article class="flex flex-col group article-card">
+                    <div class="relative overflow-hidden mb-8 aspect-[3/4]">
+                        <img alt="AI Feature"
+                            class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR7PxzrvNNe0FV2QP35pVuzmjLwecW4-gAykjtWdaOagpJKXe4cmQerr-OISRzwThPIcqPKmh2vhsHc-rQs6t8a0u23MGxz8xJPuYE71t8Syai5xkG8NT27O_o4G2W8Kct6rmUrISZYPtn1OR3xLVkpgL_hkhBWWfNgQFOwO-kQk918kWavlIN_G4Yzndiqk0AJyUh1FGeIx_AJuEDOqFWGhh2tQb9nY3AmAvwLmlFSH93aX5E6sHIQsnGoHeYZFZ7haM1xIXg23dB" />
+                        <div class="absolute top-6 right-6 flex flex-col items-center">
+                            <span
+                                class="material-symbols-outlined text-white bg-charcoal p-3 text-lg leading-none hover:bg-primary transition-colors cursor-pointer">play_circle</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-[9px] font-black uppercase tracking-[0.4em] text-secondary">YouTube
+                            Performance</span>
+                        <span class="h-px flex-grow bg-charcoal/10"></span>
+                        <span class="text-[9px] font-medium text-muted-gray italic">4h ago</span>
+                    </div>
+                    <h4
+                        class="serif-display text-3xl font-bold leading-tight mb-4 group-hover:text-primary transition-colors underline decoration-charcoal/0 group-hover:decoration-primary decoration-1 underline-offset-4 cursor-pointer">
+                        The Future of AI Content Creation</h4>
+                    <p class="serif-text text-lg text-charcoal/70 mb-8 line-clamp-3">An analytical exploration into the
+                        synthetic horizon of creative media and how algorithms are reshaping our aesthetic choices...
+                    </p>
+                    <div class="mt-auto pt-6 border-t border-charcoal/10 grid grid-cols-2">
+                        <div>
+                            <span
+                                class="text-[9px] uppercase tracking-widest text-muted-gray block mb-1">Circulation</span>
+                            <span class="text-xl font-black serif-display">42.5K</span>
+                        </div>
+                        <div>
+                            <span
+                                class="text-[9px] uppercase tracking-widest text-muted-gray block mb-1">Engagement</span>
+                            <span class="text-xl font-black serif-display">8.1%</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="flex flex-col group article-card">
+                    <div class="relative overflow-hidden mb-8 aspect-[3/4]">
+                        <img alt="Workspace Setup"
+                            class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr3f3ndFxDWzqSNVoQ_wXpfUHwEbzq9UazARTM09hu46kKlUlzceOiS4uonaa7kMG-XLp6QIhUE41C6wohqxmRychAVGwcBI9XiEsO6c6Ul0_UOrLJnVqwj_Q4AhtWKTWh3YP9a45NSUggYA_8LV6zkJZNoSHyJjRwfQ0OKTPvvYzwEHP4DqLpbPgsrgXGjlih2_H9ptRq3TEMm6rX9YdLnLp96V2GsVssIPX1a5i8Em1RwVOJqapUOOW-z80JOqIY5BP9xvb8ezHS" />
+                        <div class="absolute top-6 right-6 flex flex-col items-center">
+                            <span
+                                class="material-symbols-outlined text-white bg-charcoal p-3 text-lg leading-none hover:bg-primary transition-colors cursor-pointer">camera_alt</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-[9px] font-black uppercase tracking-[0.4em] text-secondary">Instagram
+                            Narrative</span>
+                        <span class="h-px flex-grow bg-charcoal/10"></span>
+                        <span class="text-[9px] font-medium text-muted-gray italic">1d ago</span>
+                    </div>
+                    <h4
+                        class="serif-display text-3xl font-bold leading-tight mb-4 group-hover:text-primary transition-colors underline decoration-charcoal/0 group-hover:decoration-primary decoration-1 underline-offset-4 cursor-pointer">
+                        Morning Workspace Setup | Reel</h4>
+                    <p class="serif-text text-lg text-charcoal/70 mb-8 line-clamp-3">The intersection of productivity
+                        and aesthetic minimalism. This reel resonated deeply with the professional community...</p>
+                    <div class="mt-auto pt-6 border-t border-charcoal/10 grid grid-cols-2">
+                        <div>
+                            <span
+                                class="text-[9px] uppercase tracking-widest text-muted-gray block mb-1">Impressions</span>
+                            <span class="text-xl font-black serif-display">118K</span>
+                        </div>
+                        <div>
+                            <span class="text-[9px] uppercase tracking-widest text-muted-gray block mb-1">CTR</span>
+                            <span class="text-xl font-black serif-display">3.4%</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="flex flex-col group article-card">
+                    <div class="relative overflow-hidden mb-8 aspect-[3/4]">
+                        <img alt="React Tutorial"
+                            class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZABmTZ7QqYy5UKYutC9fFndA3W6nhDO_cn98f1zaP8bRAfqiA6b9IQ0OV2fx2rfr4EmO-oARP1O28ZUhkEIJSuw0c0VtR1HSNe_NfSmQgjTEg5Eads169WDxgESRXS0UFx4o2OkSQPuUDIO-WwniCYK3QL8ZzYUokkWIGEUmJ_Do7Gf2v09quTP7T2rz4RUaNc8uTLSQ2GkN3vXdEZG4FXqQtDsWzkKQNylrbTdAAAN6Fmq_5WYy1YTQjnirjbXiAaY1fWgET874q" />
+                        <div class="absolute top-6 right-6 flex flex-col items-center">
+                            <span
+                                class="material-symbols-outlined text-white bg-charcoal p-3 text-lg leading-none hover:bg-primary transition-colors cursor-pointer">terminal</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-[9px] font-black uppercase tracking-[0.4em] text-secondary">Tutorial
+                            Series</span>
+                        <span class="h-px flex-grow bg-charcoal/10"></span>
+                        <span class="text-[9px] font-medium text-muted-gray italic">2d ago</span>
+                    </div>
+                    <h4
+                        class="serif-display text-3xl font-bold leading-tight mb-4 group-hover:text-primary transition-colors underline decoration-charcoal/0 group-hover:decoration-primary decoration-1 underline-offset-4 cursor-pointer">
+                        Mastering React in 10 Minutes</h4>
+                    <p class="serif-text text-lg text-charcoal/70 mb-8 line-clamp-3">Breaking down complex engineering
+                        concepts into digestible visual components. Our technical growth segment is peaking...</p>
+                    <div class="mt-auto pt-6 border-t border-charcoal/10 grid grid-cols-2">
+                        <div>
+                            <span class="text-[9px] uppercase tracking-widest text-muted-gray block mb-1">Total
+                                Views</span>
+                            <span class="text-xl font-black serif-display">8.2K</span>
+                        </div>
+                        <div>
+                            <span
+                                class="text-[9px] uppercase tracking-widest text-muted-gray block mb-1">Efficiency</span>
+                            <span class="text-xl font-black serif-display">12.5%</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <!-- AI Insights & Analysis Section -->
+        <section id="ai-insights" class="mb-32">
+            <div
+                class="flex flex-col md:flex-row md:items-baseline justify-between mb-16 border-b border-charcoal pb-6">
+                <h3 class="serif-display text-5xl font-black italic">AI Intelligence Report</h3>
+                <p class="text-xs font-bold uppercase tracking-[0.3em] mt-4 md:mt-0">Neural analysis of creative assets
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                <!-- Sentiment Analysis -->
+                <div id="sentiment" class="lg:col-span-4 border border-charcoal p-8 bg-white paper-shadow">
+                    <span class="text-[10px] font-black uppercase tracking-[0.3em] text-secondary block mb-6">Audience
+                        Mood Analysis</span>
+                    <div class="flex flex-col items-center justify-center py-10 border-b border-charcoal/5 mb-8">
+                        <div class="w-48 h-48 relative">
+                            <canvas id="sentimentGauge"></canvas>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <span class="serif-display text-4xl font-bold" id="sentiment-score">78</span>
+                                <span
+                                    class="text-[9px] font-bold uppercase tracking-widest text-primary">Positive</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center text-[10px] uppercase font-bold">
+                            <span>Joy / Excitement</span>
+                            <span class="text-primary">62%</span>
+                        </div>
+                        <div class="w-full bg-charcoal/5 h-1">
+                            <div class="bg-primary h-full" style="width: 62%"></div>
+                        </div>
+                        <div class="flex justify-between items-center text-[10px] uppercase font-bold">
+                            <span>Curiosity / Interest</span>
+                            <span class="text-secondary">28%</span>
+                        </div>
+                        <div class="w-full bg-charcoal/5 h-1">
+                            <div class="bg-secondary h-full" style="width: 28%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Recommendations -->
+                <div id="recommendations" class="lg:col-span-8">
+                    <div class="grid md:grid-cols-2 gap-8 h-full">
+                        <div class="border border-charcoal p-8 bg-white paper-shadow flex flex-col">
+                            <span
+                                class="text-[10px] font-black uppercase tracking-[0.3em] text-primary block mb-6">Optimal
+                                Content Strategy</span>
+                            <h4 class="serif-display text-2xl font-bold mb-4">Recommended Topics</h4>
+                            <div class="space-y-3 flex-grow" id="topic-recommendations">
+                                <div
+                                    class="p-3 bg-offwhite border border-charcoal/10 flex justify-between items-center group cursor-pointer hover:border-primary transition-colors">
+                                    <span class="text-xs font-medium serif-text italic">Generative AI Workflows</span>
+                                    <span
+                                        class="material-symbols-outlined text-sm text-primary group-hover:translate-x-1 transition-transform">trending_up</span>
+                                </div>
+                                <div
+                                    class="p-3 bg-offwhite border border-charcoal/10 flex justify-between items-center group cursor-pointer hover:border-primary transition-colors">
+                                    <span class="text-xs font-medium serif-text italic">Minimalist Studio Gear</span>
+                                    <span
+                                        class="material-symbols-outlined text-sm text-primary group-hover:translate-x-1 transition-transform">trending_up</span>
+                                </div>
+                                <div
+                                    class="p-3 bg-offwhite border border-charcoal/10 flex justify-between items-center group cursor-pointer hover:border-primary transition-colors">
+                                    <span class="text-xs font-medium serif-text italic">Productivity Systems</span>
+                                    <span
+                                        class="material-symbols-outlined text-sm text-primary group-hover:translate-x-1 transition-transform">trending_up</span>
+                                </div>
+                            </div>
+                            <div class="mt-8 pt-6 border-t border-charcoal/5">
+                                <span class="text-[9px] font-black uppercase tracking-widest block mb-2">Best Posting
+                                    Window</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-lg text-secondary">schedule</span>
+                                    <span class="text-xs font-bold serif-display italic">Tuesdays & Thursdays, 2:00 PM
+                                        EST</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-charcoal p-8 bg-charcoal text-white paper-shadow flex flex-col">
+                            <span class="text-[10px] font-black uppercase tracking-[0.3em] text-secondary block mb-6">AI
+                                Content Generator</span>
+                            <h4 class="serif-display text-2xl font-bold mb-6">Synthetic Ideas</h4>
+                            <div class="space-y-6 flex-grow">
+                                <div class="group cursor-pointer">
+                                    <p class="text-[11px] font-bold uppercase tracking-widest text-secondary/80 mb-1">
+                                        Concept A</p>
+                                    <h5
+                                        class="serif-text italic text-lg leading-snug group-hover:text-secondary transition-colors">
+                                        "The invisible friction of modern creative tools: A deep dive."</h5>
+                                </div>
+                                <div class="group cursor-pointer">
+                                    <p class="text-[11px] font-bold uppercase tracking-widest text-secondary/80 mb-1">
+                                        Concept B</p>
+                                    <h5
+                                        class="serif-text italic text-lg leading-snug group-hover:text-secondary transition-colors">
+                                        "Reclaiming the analog: Why your digital workspace is failing."</h5>
+                                </div>
+                            </div>
+                            <button
+                                class="mt-8 w-full border border-white/20 py-3 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-white hover:text-charcoal transition-all">Generate
+                                New Batch</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Competitor Analysis -->
+            <div id="competitor-analysis" class="mt-16 border border-charcoal p-12 bg-white paper-shadow">
+                <div class="grid lg:grid-cols-12 gap-16 items-center">
+                    <div class="lg:col-span-4">
+                        <span
+                            class="text-[10px] font-black uppercase tracking-[0.3em] text-primary block mb-6">Competitive
+                            Benchmarking</span>
+                        <h4 class="serif-display text-4xl font-bold mb-6 leading-tight">Market Positioning Analytics
+                        </h4>
+                        <p class="serif-text text-lg text-charcoal/70 mb-8 italic">
+                            Relative analysis against top-tier industry competitors shows a distinct advantage in
+                            audience retention and aesthetic consistency.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 bg-offwhite border border-charcoal/5">
+                                <span class="text-[9px] font-bold uppercase mb-1 block">Market Rank</span>
+                                <span class="text-2xl font-black serif-display">Top 4%</span>
+                            </div>
+                            <div class="p-4 bg-offwhite border border-charcoal/5">
+                                <span class="text-[9px] font-bold uppercase mb-1 block">Growth Delta</span>
+                                <span class="text-2xl font-black serif-display text-primary">+1.8x</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-8 h-[400px]">
+                        <canvas id="competitorChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer class="border-t-2 border-charcoal mt-24 py-16 px-8 lg:px-16">
+        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+            <div class="max-w-md">
+                <div class="flex items-center gap-6 mb-8">
+                    <img alt="Profile"
+                        class="w-16 h-16 grayscale rounded-none border border-charcoal p-1 hover:grayscale-0 transition-all cursor-pointer"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxgbEEMm4yJMKWcjIqVVQgkoyewzUqoNVLNUsKIWVRwzxttHQY9NLIxR33sV7UrPpMZRyMDSg8yKRHl1C60Kic-lvA7hZfOQKGK6SZ6Uo8RSUNqHO9aevl1qOENyWjxR5YIByNN77nN29O0pMF1HY_3Y-mbyROrUt2SVa_prXWdQvPZgr9Vq4xbXhuUzNLAHkxQ21xdiiOf_fTolcEI7arG08DQuHjTf6-Z7I4NKTBtSP2mhMLqgDfZt8RLeRMupmmpUr9C1u2PaO-" />
+                    <div>
+                        <h5 class="serif-display text-2xl font-bold">Alex Rivera</h5>
+                        <p class="text-[10px] uppercase tracking-[0.2em] font-bold text-secondary">Creative Director
+                            &amp; Founder</p>
+                    </div>
+                </div>
+                <p class="serif-text text-sm italic text-muted-gray leading-relaxed">
+                    "Data is just a different kind of poetry. We read the numbers to understand the heart of the
+                    audience."
+                </p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-16">
+                <div class="flex flex-col gap-4">
+                    <span class="text-[10px] font-black uppercase tracking-[0.3em] mb-2">Navigation</span>
+                    <a class="text-[11px] font-medium hover:text-primary transition-colors" href="#overview">Journal
+                        Archives</a>
+                    <a class="text-[11px] font-medium hover:text-primary transition-colors" href="#metrics">Studio
+                        Settings</a>
+                    <a class="text-[11px] font-medium hover:text-primary transition-colors" href="#content-feed">Brand
+                        Kit</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-[10px] font-black uppercase tracking-[0.3em] mb-2">Legal</span>
+                    <a class="text-[11px] font-medium hover:text-primary transition-colors" href="#">Privacy Policy</a>
+                    <a class="text-[11px] font-medium hover:text-primary transition-colors" href="#">Editorial Terms</a>
+                    <a class="text-[11px] font-medium hover:text-primary transition-colors" href="#">Rights
+                        Management</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-[10px] font-black uppercase tracking-[0.3em] mb-2">Connect</span>
+                    <div class="flex gap-4">
+                        <span
+                            class="material-symbols-outlined text-lg cursor-pointer hover:text-primary transition-colors">share</span>
+                        <span
+                            class="material-symbols-outlined text-lg cursor-pointer hover:text-primary transition-colors">mail</span>
+                        <span
+                            class="material-symbols-outlined text-lg cursor-pointer hover:text-primary transition-colors">rss_feed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-[1400px] mx-auto mt-16 pt-8 border-t border-charcoal/10 flex justify-between items-center">
+            <span class="text-[9px] uppercase tracking-[0.4em] font-bold">© 2024 Creator Analytics • Editorial
+                Edition</span>
+            <span class="serif-text italic text-xs">A premium data experience</span>
+        </div>
+    </footer>
+
+    <script>
+        // Global Constants & State
+        const API_BASE = 'http://localhost:8000/api';
+        let charts = {};
+
+        // Color Palette
+        const colors = {
+            primary: '#2d6a6d',
+            secondary: '#c5a059',
+            charcoal: '#121212',
+            offwhite: '#fdfbf7',
+            muted: 'rgba(18, 18, 18, 0.1)'
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeBasicFeatures();
+            initializeCharts();
+            setupIntersectionObserver();
+            setupEventListeners();
+            fetchDashboardSummary(); // Initial fetch
+        });
+
+        function initializeBasicFeatures() {
+            // Update current date
+            const dateElement = document.getElementById('current-date');
+            const now = new Date();
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
+                'November', 'December'];
+            dateElement.textContent = `Edition: ${months[now.getMonth()]} ${now.getFullYear()}`;
+
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('active');
+                    menuToggle.textContent = mobileMenu.classList.contains('active') ? 'close' : 'menu';
+                });
+            }
+
+            // Scroll progress
+            window.addEventListener('scroll', () => {
+                const scrollPercent = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                document.body.style.setProperty('--scroll-progress', scrollPercent + '%');
+            });
+        }
+
+        function initializeCharts() {
+            // 1. Growth Chart
+            const ctxGrowth = document.getElementById('growthChart').getContext('2d');
+            charts.growth = new Chart(ctxGrowth, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+                    datasets: [{
+                        label: 'Subscribers',
+                        data: [1.2, 1.5, 1.4, 1.8, 2.1, 2.4],
+                        borderColor: colors.primary,
+                        backgroundColor: 'rgba(45, 106, 109, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        borderWidth: 3,
+                        pointRadius: 4,
+                        pointHoverRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: false, grid: { color: colors.muted } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+            // 2. Sentiment Gauge (Half-Doughnut)
+            const ctxSentiment = document.getElementById('sentimentGauge').getContext('2d');
+            charts.sentiment = new Chart(ctxSentiment, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [78, 22],
+                        backgroundColor: [colors.primary, colors.muted],
+                        borderWidth: 0,
+                        circumference: 180,
+                        rotation: 270,
+                        cutout: '85%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { tooltip: { enabled: false } }
+                }
+            });
+
+            // 3. Competitor Radar/Bar Chart
+            const ctxComp = document.getElementById('competitorChart').getContext('2d');
+            charts.competitor = new Chart(ctxComp, {
+                type: 'bar',
+                data: {
+                    labels: ['Engagement', 'Retention', 'Frequency', 'Virality', 'Quality'],
+                    datasets: [
+                        {
+                            label: 'You',
+                            data: [85, 92, 70, 65, 95],
+                            backgroundColor: colors.primary,
+                            barThickness: 12
+                        },
+                        {
+                            label: 'Avg Competitor',
+                            data: [65, 70, 75, 40, 60],
+                            backgroundColor: colors.muted,
+                            barThickness: 12
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { font: { family: 'Inter', size: 10, weight: 'bold' } } } },
+                    scales: {
+                        y: { beginAtZero: true, max: 100, grid: { color: colors.muted } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        function setupIntersectionObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        if (entry.target.id === 'metrics') {
+                            animateValue(document.getElementById('stat-audience'), 0, 485.7, 1500, 'M');
+                            animateValue(document.getElementById('stat-reach'), 0, 115.2, 1500, 'B');
+                            animateValue(document.getElementById('stat-engagement'), 0, 4.2, 1500, '%');
+                            animateValue(document.getElementById('stat-value'), 0, 85.5, 1500, '$K');
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('section, .stat-card').forEach(el => observer.observe(el));
+        }
+
+        function setupEventListeners() {
+            // Chart metric toggles
+            document.querySelectorAll('.chart-toggle').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const metric = this.dataset.metric;
+                    // Update UI
+                    document.querySelectorAll('.chart-toggle').forEach(b => {
+                        b.classList.remove('bg-charcoal', 'text-white');
+                        b.classList.add('border', 'border-charcoal/20');
+                    });
+                    this.classList.add('bg-charcoal', 'text-white');
+                    this.classList.remove('border', 'border-charcoal/20');
+
+                    // Simulate data update
+                    updateGrowthChart(metric);
+                });
+            });
+
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        function updateGrowthChart(metric) {
+            const chart = charts.growth;
+            const data = metric === 'views' ?
+                [8.2, 9.5, 11.2, 12.8, 14.1, 15.5] :
+                [1.2, 1.5, 1.4, 1.8, 2.1, 2.4];
+
+            chart.data.datasets[0].label = metric.charAt(0).toUpperCase() + metric.slice(1);
+            chart.data.datasets[0].data = data;
+            chart.data.datasets[0].borderColor = metric === 'views' ? colors.secondary : colors.primary;
+            chart.data.datasets[0].backgroundColor = metric === 'views' ? 'rgba(197, 160, 89, 0.1)' : 'rgba(45, 106, 109, 0.1)';
+            chart.update();
+        }
+
+        function animateValue(element, start, end, duration, suffix = '') {
+            if (!element) return;
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = progress * (end - start) + start;
+
+                if (suffix === 'M') element.textContent = value.toFixed(1) + 'M';
+                else if (suffix === 'B') element.textContent = value.toFixed(1) + 'B';
+                else if (suffix === '%') element.textContent = value.toFixed(1) + '%';
+                else if (suffix === '$K') element.textContent = '$' + value.toFixed(1) + 'K';
+                else element.textContent = Math.floor(value).toLocaleString();
+
+                if (progress < 1) window.requestAnimationFrame(step);
+            }; window.requestAnimationFrame(step);
+        }
+
+        async function fetchDashboardSummary() {
+            try {
+                const response = await fetch(`${API_BASE}/ai/dashboard/summary`);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+
+                // Update Metrics (Animated)
+                if (data.metrics) {
+                    animateValue(document.getElementById('stat-audience'), 0, data.metrics.total_audience / 1000000, 1500, 'M');
+                    animateValue(document.getElementById('stat-reach'), 0, data.metrics.total_reach / 1000000000, 1500, 'B');
+                    animateValue(document.getElementById('stat-engagement'), 0, data.metrics.engagement_avg, 1500, '%');
+                }
+
+                // Update Forecasts
+                const growthEl = document.getElementById('forecast-growth');
+                const retentionEl = document.getElementById('retention-index');
+                if (growthEl) growthEl.textContent = `+${data.growth_forecast}% Predicted`;
+                if (retentionEl) retentionEl.textContent = `${data.retention_index}% Stability`;
+
+                // Update Editorial Feed
+                updateEditorialFeed(data.feed);
+
+                // Update Charts with Real Data
+                if (data.charts) {
+                    // 1. Growth Chart
+                    if (charts.growth && data.charts.growth) {
+                        charts.growth.data.labels = data.charts.growth.labels;
+                        charts.growth.data.datasets[0].data = data.charts.growth.data;
+                        charts.growth.update();
+                    }
+
+                    // 2. Sentiment Gauge
+                    if (charts.sentiment && data.charts.sentiment) {
+                        const score = data.charts.sentiment.score;
+                        charts.sentiment.data.datasets[0].data = [score, 100 - score];
+                        charts.sentiment.update();
+
+                        const sentimentEl = document.getElementById('sentiment-score');
+                        if (sentimentEl) sentimentEl.textContent = score;
+                    }
+
+                    // 3. Competitor Chart
+                    if (charts.competitor && data.charts.competitor) {
+                        const compData = data.charts.competitor;
+                        charts.competitor.data.datasets[0].data = compData.you;
+                        charts.competitor.data.datasets[1].data = compData.avg;
+                        charts.competitor.update();
+                    }
+                }
+            } catch (err) {
+                console.error("API error:", err);
+            }
+        }
+
+        function updateEditorialFeed(items) {
+            const feedContainer = document.querySelector('#content-feed .grid');
+            if (!feedContainer || !items || items.length === 0) return;
+
+            feedContainer.innerHTML = ''; // Clear existing
+
+            items.forEach(item => {
+                const article = document.createElement('article');
+                article.className = 'flex flex-col group article-card visible';
+
+                const icon = item.type === 'YouTube' ? 'play_circle' : 'camera_alt';
+                const colorClass = item.type === 'YouTube' ? 'text-secondary' : 'text-primary';
+                const viewsSuffix = item.views > 1000000 ? (item.views / 1000000).toFixed(1) + 'M' : (item.views / 1000).toFixed(1) + 'K';
+
+                article.innerHTML = `
+                    <div class="relative overflow-hidden mb-8 aspect-[3/4]">
+                        <img alt="${item.title}"
+                            class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                            src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&h=800&q=80" />
+                        <div class="absolute top-6 right-6 flex flex-col items-center">
+                            <span class="material-symbols-outlined text-white bg-charcoal p-3 text-lg leading-none hover:bg-primary transition-colors cursor-pointer">${icon}</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-[9px] font-black uppercase tracking-[0.4em] ${colorClass}">${item.type} dispatch</span>
+                        <span class="h-px flex-grow bg-charcoal/10"></span>
+                        <span class="text-[9px] font-medium text-muted-gray italic">Recent</span>
+                    </div>
+                    <h4 class="serif-display text-3xl font-bold leading-tight mb-4 group-hover:text-primary transition-colors underline decoration-charcoal/0 group-hover:decoration-primary decoration-1 underline-offset-4 cursor-pointer">
+                        ${item.title}</h4>
+                    <p class="serif-text text-lg text-charcoal/70 mb-8 line-clamp-3">
+                        Latest high-performance dispatch from our creative network, showing significant algorithmic momentum...
+                    </p>
+                    <div class="mt-auto pt-6 border-t border-charcoal/10 grid grid-cols-2">
+                        <div>
+                            <span class="text-[9px] uppercase tracking-widest text-muted-gray block mb-1">${item.type === 'YouTube' ? 'Views' : 'Likes'}</span>
+                            <span class="text-xl font-black serif-display">${viewsSuffix}</span>
+                        </div>
+                        <div>
+                            <span class="text-[9px] uppercase tracking-widest text-muted-gray block mb-1">Engagement</span>
+                            <span class="text-xl font-black serif-display">${(item.engagement * 100).toFixed(1)}%</span>
+                        </div>
+                    </div>
+                `;
+                feedContainer.appendChild(article);
+            });
+        }
+    </script>
+</body>
+
+</html>

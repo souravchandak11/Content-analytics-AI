@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-offwhite: #fdfbf7;
+  --text-charcoal: #121212;
+  --accent-teal: #2d6a6d;
+  --accent-terracotta: #c06c52;
+  --muted-gray: #71717a;
+  --border-ink: #262626;
+  --border-soft: #e5e5e1;
+}
+
+body {
+  @apply bg-offwhite text-charcoal font-sans antialiased;
+}
+
+.serif-display {
+  @apply font-serif;
+}
+
+.serif-text {
+  @apply font-editorial;
+}
+
+.magazine-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
+}
+
+.dropcap::first-letter {
+  float: left;
+  @apply font-serif text-6xl pr-2 text-secondary;
+  line-height: 0.8;
+}
+
+.paper-shadow {
+  box-shadow: 0 10px 30px -15px rgba(0,0,0,0.1);
+}
