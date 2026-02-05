@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { Sparkles, TrendingUp, BarChart, Zap, ChevronRight, Loader2, Youtube, Target, Activity } from 'lucide-react';
-import { analyticsApi } from '../lib/api';
+import { analyticsApi } from '@/lib/api';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 
 const PredictiveIntelligence = () => {

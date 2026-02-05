@@ -8,7 +8,7 @@ import { SentimentPieChart, EngagementBarChart } from '../components/ui/Charts';
 const InstagramStoryboard = () => {
     const [selectedAccountId, setSelectedAccountId] = useState<string | null>(null);
 
-    const { data: accounts } = useQuery({
+    const { data: accounts } = useQuery<any[]>({
         queryKey: ['instagram-accounts'],
         queryFn: analyticsApi.listInstagramAccounts,
     });
@@ -16,13 +16,13 @@ const InstagramStoryboard = () => {
     const accountId = selectedAccountId || accounts?.[0]?.instagram_id;
     const selectedAccount = accounts?.find((a: any) => a.instagram_id === accountId);
 
-    const { data: instagramData, isLoading: metricsLoading } = useQuery({
+    const { data: instagramData, isLoading: metricsLoading } = useQuery<any>({
         queryKey: ['instagram-metrics', accountId],
         queryFn: () => analyticsApi.getInstagramMetrics(accountId!),
         enabled: !!accountId,
     });
 
-    const { data: posts, isLoading: postsLoading } = useQuery({
+    const { data: posts, isLoading: postsLoading } = useQuery<any[]>({
         queryKey: ['instagram-posts', accountId],
         queryFn: () => analyticsApi.getInstagramPosts(accountId!),
         enabled: !!accountId,
