@@ -1,4 +1,3 @@
-services:
   # FastAPI Backend
   - type: web
     name: content-analytics-api
@@ -6,7 +5,7 @@ services:
     plan: free
     dockerContext: .
     dockerfilePath: Dockerfile
-    target: api
+    dockerBuildTarget: api
     dockerCommand: uvicorn server.main:app --host 0.0.0.0 --port 10000
     envVars:
       - key: DATABASE_URL
@@ -34,7 +33,7 @@ services:
     plan: free
     dockerContext: .
     dockerfilePath: Dockerfile
-    target: dashboard
+    dockerBuildTarget: dashboard
     envVars:
       - key: API_URL
         fromService:
@@ -48,7 +47,6 @@ services:
   - type: redis
     name: content-analytics-redis
     plan: free
-    ipAllowList: []
 
 databases:
   - name: content-analytics-db
