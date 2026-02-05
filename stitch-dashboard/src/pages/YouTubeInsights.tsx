@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { TrendingUp, Users, Eye, BarChart2, CheckCircle2, Star, Loader2, Youtube } from 'lucide-react';
 import MetricCard from '../components/ui/MetricCard';
-import { analyticsApi } from '../lib/api';
+import { analyticsApi, Channel, Video } from '../lib/api';
 import { PerformanceChart } from '../components/ui/Charts';
 
 const YouTubeInsights = () => {
@@ -16,7 +16,7 @@ const YouTubeInsights = () => {
     });
 
     const channelId = selectedChannelId || channels?.[0]?.channel_id;
-    const selectedChannel = channels?.find((c: any) => c.channel_id === channelId);
+    const selectedChannel = channels?.find((c: Channel) => c.channel_id === channelId);
 
     const { data: youtubeData, isLoading: metricsLoading } = useQuery({
         queryKey: ['youtube-metrics', channelId],
@@ -41,35 +41,37 @@ const YouTubeInsights = () => {
     const metrics = [
         {
             label: "Reach Total",
-            value: (youtubeData?.stats?.total_views / 1000000).toFixed(1) + "M",
+            value: ((youtubeData?.stats?.total_views || 0) / 1000000).toFixed(1) + "M",
             delta: "5.2% Increase",
             deltaType: "positive" as const,
             description: "Total impressions across the YouTube ecosystem analyzed for the current period."
         },
         {
             label: "Audience Base",
-            value: (youtubeData?.subscribers / 1000000).toFixed(1) + "M",
+            value: ((youtubeData?.subscribers || 0) / 1000000).toFixed(1) + "M",
             delta: "Stable",
             deltaType: "neutral" as const,
             description: "Core subscriber count reflecting long-term community growth and authority."
         },
         {
             label: "Eng. Coefficient",
-            value: (youtubeData?.stats?.avg_engagement * 100).toFixed(1) + "%",
+            value: ((youtubeData?.stats?.avg_engagement || 0) * 100).toFixed(1) + "%",
             delta: "+0.4%",
             deltaType: "positive" as const,
             description: "Average interaction rate per video, normalized for audience size."
         },
         {
             label: "Health Score",
-            value: (youtubeData?.health_score?.total_score || youtubeData?.health_score || 0) + "/100",
-            delta: youtubeData?.health_score?.grade || "Optimal",
+            value: (typeof youtubeData?.health_score === 'number'
+                ? youtubeData.health_score
+                : youtubeData?.health_score?.total_score || 0) + "/100",
+            delta: typeof youtubeData?.health_score === 'object' ? youtubeData.health_score.grade : "Optimal",
             deltaType: "trend" as const,
             description: "Proprietary metric measuring consistency, growth, and audience sentiment."
         }
     ];
 
-    const videoStats = (videos || []).slice(0, 3).map((v: any) => ({
+    const videoStats = (videos || []).slice(0, 3).map((v: Video) => ({
         title: v.title,
         plays: (v.views / 1000).toFixed(1) + "K",
         ctr: v.engagement_rate ? (v.engagement_rate * 100).toFixed(1) + "%" : "0.0%",
@@ -78,7 +80,7 @@ const YouTubeInsights = () => {
         image: v.thumbnail_url || "https://lh3.googleusercontent.com/aida-public/placeholder"
     }));
 
-    const tableData = (videos || []).slice(0, 5).map((v: any) => ({
+    const tableData = (videos || []).slice(0, 5).map((v: Video) => ({
         metric: v.title,
         pathway: "Direct Discovery",
         volume: (v.views / 1000).toFixed(1) + "K",
@@ -157,7 +159,7 @@ const YouTubeInsights = () => {
                                 onChange={(e) => setSelectedChannelId(e.target.value)}
                                 className="w-full text-[10px] uppercase tracking-widest font-bold border border-charcoal/20 p-2 bg-white"
                             >
-                                {channels.map((ch: any) => (
+                                {channels.map((ch: Channel) => (
                                     <option key={ch.channel_id} value={ch.channel_id}>
                                         {ch.title}
                                     </option>

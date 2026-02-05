@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { BarChart3, MessageSquare, Heart, Share2, Quote, ArrowUpRight, Loader2, Youtube, TrendingUp } from 'lucide-react';
-import { analyticsApi } from '../lib/api';
+import { analyticsApi, Channel, Video, SentimentData, Comment } from '../lib/api';
 import { SentimentPieChart } from '../components/ui/Charts';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 
@@ -16,7 +16,7 @@ const SentimentReport = () => {
     });
 
     const channelId = selectedChannelId || channels?.[0]?.channel_id;
-    const selectedChannel = channels?.find((c: any) => c.channel_id === channelId);
+    const selectedChannel = channels?.find((c: Channel) => c.channel_id === channelId);
 
     const { data: videos } = useQuery({
         queryKey: ['youtube-videos', channelId],
@@ -42,7 +42,8 @@ const SentimentReport = () => {
     }
 
     const totalComments = sentimentData?.total_comments || 1;
-    const distribution = sentimentData?.sentiment_distribution || {};
+    // Don't fallback to {} to preserve type info, handle undefined access instead
+    const distribution = sentimentData?.sentiment_distribution;
 
     // Use ratios from backend if available, otherwise calculate
     const positivePercent = sentimentData?.positive_ratio !== undefined ? sentimentData.positive_ratio : ((distribution?.positive || 0) / totalComments * 100).toFixed(1);
@@ -62,7 +63,7 @@ const SentimentReport = () => {
     ];
 
     const commentsList = sentimentData?.top_comments || sentimentData?.positive_examples || [];
-    const comments = commentsList.slice(0, 4).map((c: any) => ({
+    const comments = commentsList.slice(0, 4).map((c: Comment) => ({
         text: c.text,
         author: c.author || "Viewer",
         tag: c.label || "Key Insight",
@@ -70,7 +71,7 @@ const SentimentReport = () => {
     }));
 
     // Use real videos for activities
-    const activities = (videos || []).slice(0, 3).map((v: any) => ({
+    const activities = (videos || []).slice(0, 3).map((v: Video) => ({
         title: v.title?.slice(0, 50) || "Video Title",
         desc: v.description ? (v.description.slice(0, 120) + "...") : "No description available.",
         stats: ((v.engagement_rate || 0) * 100).toFixed(1) + "% Eng.",
@@ -172,7 +173,7 @@ const SentimentReport = () => {
                     <button className="text-[10px] font-black uppercase tracking-widest border border-charcoal px-8 py-3 hover:bg-black hover:text-white transition-all">View Archive</button>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-                    {activities.map((art, i) => (
+                    {activities.map((art: any, i: number) => (
                         <motion.article
                             key={art.title}
                             initial={{ opacity: 0, y: 20 }}
