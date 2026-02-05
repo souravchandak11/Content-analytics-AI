@@ -30,10 +30,7 @@ services:
     dockerCommand: streamlit run app/streamlit_app.py --server.port 8501 --server.address 0.0.0.0
     envVars:
       - key: API_URL
-        fromService:
-          type: web
-          name: content-analytics-api
-          property: url
+        value: http://content-analytics-api:10000
       - key: PORT
         value: 8501
 
@@ -41,6 +38,7 @@ services:
   - type: redis
     name: content-analytics-redis
     plan: free
+    ipAllowList: []
 
 databases:
   - name: content-analytics-db
