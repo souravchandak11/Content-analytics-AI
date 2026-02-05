@@ -7,7 +7,7 @@ import { analyticsApi } from '../lib/api';
 import { PlayCircle, Camera, Loader2, TrendingUp, TrendingDown, Star, Youtube, Instagram, Activity, BarChart3, PieChart } from 'lucide-react';
 
 const DashboardOverview = () => {
-    const { data: overview, isLoading, error } = useQuery({
+    const { data: overview, isLoading, error } = useQuery<any>({
         queryKey: ['overview'],
         queryFn: analyticsApi.getOverview,
         refetchInterval: 30000, // Refresh every 30 seconds

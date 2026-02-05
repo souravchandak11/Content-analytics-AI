@@ -8,7 +8,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 const PredictiveIntelligence = () => {
     const [selectedChannelId, setSelectedChannelId] = useState<string | null>(null);
 
-    const { data: channels } = useQuery({
+    const { data: channels } = useQuery<any[]>({
         queryKey: ['youtube-channels'],
         queryFn: analyticsApi.listYoutubeChannels,
     });
@@ -16,7 +16,7 @@ const PredictiveIntelligence = () => {
     const channelId = selectedChannelId || channels?.[0]?.channel_id;
     const selectedChannel = channels?.find((c: any) => c.channel_id === channelId);
 
-    const { data: forecast, isLoading } = useQuery({
+    const { data: forecast, isLoading } = useQuery<any>({
         queryKey: ['forecast', channelId],
         queryFn: () => analyticsApi.forecastSubscribers(channelId!),
         enabled: !!channelId,
