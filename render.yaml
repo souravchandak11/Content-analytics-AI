@@ -4,6 +4,7 @@ services:
     name: content-analytics-api
     runtime: docker
     plan: free
+    dockerTarget: api
     dockerCommand: uvicorn server.main:app --host 0.0.0.0 --port 10000
     envVars:
       - key: DATABASE_URL
@@ -27,6 +28,7 @@ services:
     name: content-analytics-streamlit
     runtime: docker
     plan: free
+    dockerTarget: dashboard
     dockerCommand: streamlit run app/streamlit_app.py --server.port 8501 --server.address 0.0.0.0
     envVars:
       - key: API_URL
