@@ -55,7 +55,7 @@ app = FastAPI(
 )
 
 # CORS middleware
-origins = os.getenv('ALLOWED_ORIGINS', 'https://contentanalyticsai.vercel.app,http://localhost:3000,http://localhost:8501,http://localhost:5173,http://127.0.0.1:5173,http://localhost:5500,http://127.0.0.1:5500,http://localhost:8080').split(',')
+origins = os.getenv('ALLOWED_ORIGINS', 'https://contentanalyticsai.vercel.app,https://contentanalyticsai.vercel.app/,http://localhost:3000,http://localhost:8501,http://localhost:5173,http://127.0.0.1:5173,http://localhost:5500,http://127.0.0.1:5500,http://localhost:8080').split(',')
 
 app.add_middleware(
     CORSMiddleware,
