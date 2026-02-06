@@ -1,0 +1,3402 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AI-Powered YouTube & Instagram Creator Performance Analytics Platform">
+      
+      
+        <meta name="author" content="Sourav Chandak">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Content Analytics Tool</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#content-analytics-tool" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Content Analytics Tool" class="md-header__button md-logo" aria-label="Content Analytics Tool" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Content Analytics Tool
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/souravchandak11/Content-Analytics-AI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    content-analytics-ai
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Content Analytics Tool" class="md-nav__button md-logo" aria-label="Content Analytics Tool" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Content Analytics Tool
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/souravchandak11/Content-Analytics-AI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    content-analytics-ai
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ai-powered-youtube-instagram-creator-performance-analytics-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI-Powered YouTube &amp; Instagram Creator Performance Analytics Platform
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Solution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business Impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✨ Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✨ Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real-time-data-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 Real-Time Data Collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Advanced Analytics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🤖 Machine Learning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interactive-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📈 Interactive Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎬 Demo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎬 Demo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dashboard-screenshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard Screenshots
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tech-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ Tech Stack
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Tech Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apis-data-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APIs &amp; Data Collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-science-ml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Science &amp; ML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visualization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DevOps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-setup-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Setup Guide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Setup Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#youtube-data-api-v3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YouTube Data API v3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instagram-graph-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instagram Graph API
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📖 Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-collect-data-from-youtube-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Collect Data from YouTube Channel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-analyze-channel-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Analyze Channel Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-predict-viral-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Predict Viral Content
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-generate-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Generate Reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#track-multiple-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Track Multiple Channels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schedule-automated-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schedule Automated Collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📁 Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📡 API Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📡 API Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#youtube-client-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YouTube Client API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="YouTube Client API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-channel-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Channel Statistics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-recent-videos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Recent Videos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-video-comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Video Comments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analytics-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analytics API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analytics API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calculate-engagement-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Calculate Engagement Rate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-channel-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Channel Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#machine-learning-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🤖 Machine Learning Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🤖 Machine Learning Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-viral-content-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Viral Content Prediction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-engagement-forecasting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Engagement Forecasting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-sentiment-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sentiment Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analytics-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Analytics Metrics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Analytics Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#engagement-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Engagement Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#growth-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Growth Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧪 Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-all-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run All Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-quality-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Quality Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚢 Deployment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚢 Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streamlit-cloud-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Streamlit Cloud (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heroku" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heroku
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production Considerations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results-insights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📈 Results &amp; Insights
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📈 Results &amp; Insights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Findings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-impact_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business Impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🤝 Contributing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🤝 Contributing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-contribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Contribute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Style
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📄 License
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📞 Contact
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🙏 Acknowledgments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Additional Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗺️ Roadmap
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗺️ Roadmap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q1 2025
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q2 2025
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q3 2025
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4 2025
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#star-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⭐ Star History
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ai-powered-youtube-instagram-creator-performance-analytics-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI-Powered YouTube &amp; Instagram Creator Performance Analytics Platform
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Solution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business Impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✨ Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✨ Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real-time-data-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 Real-Time Data Collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Advanced Analytics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🤖 Machine Learning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interactive-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📈 Interactive Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎬 Demo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎬 Demo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dashboard-screenshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard Screenshots
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tech-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ Tech Stack
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Tech Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apis-data-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APIs &amp; Data Collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-science-ml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Science &amp; ML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visualization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DevOps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-setup-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Setup Guide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Setup Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#youtube-data-api-v3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YouTube Data API v3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instagram-graph-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instagram Graph API
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📖 Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-collect-data-from-youtube-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Collect Data from YouTube Channel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-analyze-channel-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Analyze Channel Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-predict-viral-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Predict Viral Content
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-generate-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Generate Reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#track-multiple-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Track Multiple Channels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schedule-automated-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schedule Automated Collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📁 Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📡 API Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📡 API Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#youtube-client-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YouTube Client API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="YouTube Client API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-channel-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Channel Statistics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-recent-videos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Recent Videos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-video-comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Video Comments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analytics-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analytics API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analytics API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calculate-engagement-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Calculate Engagement Rate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-channel-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Channel Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#machine-learning-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🤖 Machine Learning Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🤖 Machine Learning Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-viral-content-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Viral Content Prediction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-engagement-forecasting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Engagement Forecasting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-sentiment-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sentiment Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analytics-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Analytics Metrics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Analytics Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#engagement-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Engagement Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#growth-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Growth Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧪 Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-all-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run All Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-quality-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Quality Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚢 Deployment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚢 Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streamlit-cloud-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Streamlit Cloud (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heroku" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heroku
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production Considerations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results-insights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📈 Results &amp; Insights
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📈 Results &amp; Insights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Findings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-impact_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business Impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🤝 Contributing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🤝 Contributing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-contribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Contribute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Style
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📄 License
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📞 Contact
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🙏 Acknowledgments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Additional Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗺️ Roadmap
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗺️ Roadmap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q1 2025
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q2 2025
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q3 2025
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4 2025
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#star-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⭐ Star History
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/souravchandak11/Content-Analytics-AI/edit/master/docs/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="content-analytics-tool">🎥 Content Analytics Tool</h1>
+<h3 id="ai-powered-youtube-instagram-creator-performance-analytics-platform">AI-Powered YouTube &amp; Instagram Creator Performance Analytics Platform</h3>
+<p><a href="https://www.python.org/downloads/"><img alt="Python 3.9+" src="https://img.shields.io/badge/python-3.9+-blue.svg" /></a>
+<a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
+<a href="https://streamlit.io"><img alt="Streamlit" src="https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&amp;logoColor=white" /></a>
+<a href="https://www.postgresql.org/"><img alt="PostgreSQL" src="https://img.shields.io/badge/PostgreSQL-316192?logo=postgresql&amp;logoColor=white" /></a></p>
+<blockquote>
+<p>A comprehensive analytics platform that tracks YouTube and Instagram creator performance, predicts viral content using machine learning, and delivers actionable insights through an interactive dashboard.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">📋 Table of Contents</h2>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#demo">Demo</a></li>
+<li><a href="#tech-stack">Tech Stack</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#api-documentation">API Documentation</a></li>
+<li><a href="#machine-learning-models">Machine Learning Models</a></li>
+<li><a href="#analytics-metrics">Analytics Metrics</a></li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#deployment">Deployment</a></li>
+<li><a href="#results--insights">Results &amp; Insights</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+<hr />
+<h2 id="overview">🎯 Overview</h2>
+<h3 id="the-problem">The Problem</h3>
+<p>Content creators and brands struggle to:
+- Understand what drives engagement on their content
+- Identify which videos will go viral before posting
+- Track performance across multiple platforms
+- Benchmark against competitors
+- Optimize posting strategies for maximum reach</p>
+<h3 id="the-solution">The Solution</h3>
+<p>An intelligent analytics platform that:
+- <strong>Collects</strong> real-time data from YouTube and Instagram APIs
+- <strong>Analyzes</strong> 15+ engagement metrics and performance indicators
+- <strong>Predicts</strong> viral content potential with 78% accuracy using ML
+- <strong>Visualizes</strong> insights through interactive dashboards
+- <strong>Recommends</strong> optimal posting times and content strategies</p>
+<h3 id="business-impact">Business Impact</h3>
+<ul>
+<li><strong>$8.2B Market:</strong> Content analytics industry (2029 projection)</li>
+<li><strong>50M+ Creators:</strong> Potential user base worldwide</li>
+<li><strong>80% Time Saved:</strong> Automated reporting vs manual analysis</li>
+<li><strong>35% Boost:</strong> Increased engagement through optimized posting</li>
+</ul>
+<hr />
+<h2 id="features">✨ Features</h2>
+<h3 id="real-time-data-collection">🔄 Real-Time Data Collection</h3>
+<ul>
+<li>✅ <strong>YouTube API Integration</strong> - Channel stats, video metrics, comments</li>
+<li>✅ <strong>Instagram Graph API</strong> - Profile data, post performance, engagement</li>
+<li>✅ <strong>Automated Scheduling</strong> - Daily data collection and snapshot creation</li>
+<li>✅ <strong>Rate Limit Management</strong> - Smart caching and quota optimization</li>
+</ul>
+<h3 id="advanced-analytics">📊 Advanced Analytics</h3>
+<ul>
+<li>✅ <strong>Engagement Metrics</strong> - Likes, comments, shares, CTR</li>
+<li>✅ <strong>Growth Tracking</strong> - Subscriber/follower trends over time</li>
+<li>✅ <strong>Performance Benchmarking</strong> - Compare against industry leaders</li>
+<li>✅ <strong>Posting Pattern Analysis</strong> - Optimal times/days identification</li>
+<li>✅ <strong>Viral Content Detection</strong> - Identify breakout videos</li>
+<li>✅ <strong>Audience Demographics</strong> - Age, gender, location insights</li>
+</ul>
+<h3 id="machine-learning">🤖 Machine Learning</h3>
+<ul>
+<li>✅ <strong>Viral Prediction Model</strong> - 78% accuracy (Random Forest)</li>
+<li>✅ <strong>Engagement Forecasting</strong> - Time series prediction (Prophet)</li>
+<li>✅ <strong>Sentiment Analysis</strong> - Comment NLP (VADER + TextBlob)</li>
+<li>✅ <strong>Content Recommendation</strong> - Suggest topics and formats</li>
+<li>✅ <strong>Feature Engineering</strong> - 15+ predictive features</li>
+</ul>
+<h3 id="interactive-dashboard">📈 Interactive Dashboard</h3>
+<ul>
+<li>✅ <strong>KPI Overview</strong> - Total views, engagement rate, growth metrics</li>
+<li>✅ <strong>Performance Charts</strong> - Time series, bar charts, heatmaps</li>
+<li>✅ <strong>Top Content Table</strong> - Best performing videos/posts</li>
+<li>✅ <strong>Competitor Comparison</strong> - Side-by-side analytics</li>
+<li>✅ <strong>Export Reports</strong> - CSV, PDF downloads</li>
+<li>✅ <strong>Mobile Responsive</strong> - Works on all devices</li>
+</ul>
+<hr />
+<h2 id="demo">🎬 Demo</h2>
+<h3 id="dashboard-screenshots">Dashboard Screenshots</h3>
+<p><strong>Main Dashboard - Overview</strong>
+<strong>Main Dashboard - Overview</strong>
+<img width="1802" height="877" alt="Screenshot 2026-02-06 144513" src="https://github.com/user-attachments/assets/1f52c3c5-f740-4532-b9f6-733c2708c8ab" /></p>
+<p><em>Real-time performance metrics and viewer analytics</em></p>
+<p><strong>ML Prediction Interface</strong>
+<strong>ML Prediction Interface</strong>
+<img width="1777" height="881" alt="Screenshot 2026-02-06 172429" src="https://github.com/user-attachments/assets/a9612e2f-a4d9-4284-87a5-8b9e2b0ec5d9" /></p>
+<p><em>Viral probability forecasting engine</em></p>
+<p><br></p>
+<p><strong>Additional Views</strong>
+| Analytics Breakdown | Audience Sentiment |
+|-------------------|-------------------|
+<img width="1829" height="847" alt="Screenshot 2026-02-06 144655" src="https://github.com/user-attachments/assets/f7033f18-7422-45a1-aba5-36f95bab01f4" /></p>
+<p>---<img width="1820" height="890" alt="Screenshot 2026-02-06 144554" src="https://github.com/user-attachments/assets/21de8d55-3390-4848-85bd-ee7e6988afcd" /></p>
+<h2 id="tech-stack">🛠️ Tech Stack</h2>
+<h3 id="backend">Backend</h3>
+<ul>
+<li><strong>Python 3.9+</strong> - Core programming language</li>
+<li><strong>PostgreSQL</strong> - Relational database</li>
+<li><strong>Redis</strong> - Caching layer</li>
+<li><strong>SQLAlchemy</strong> - ORM</li>
+<li><strong>Alembic</strong> - Database migrations</li>
+</ul>
+<h3 id="apis-data-collection">APIs &amp; Data Collection</h3>
+<ul>
+<li><strong>YouTube Data API v3</strong> - Video and channel metrics</li>
+<li><strong>Instagram Graph API</strong> - Profile and post data</li>
+<li><strong>Facebook SDK</strong> - Instagram Business integration</li>
+</ul>
+<h3 id="data-science-ml">Data Science &amp; ML</h3>
+<ul>
+<li><strong>Pandas &amp; NumPy</strong> - Data manipulation</li>
+<li><strong>Scikit-learn</strong> - Machine learning models</li>
+<li><strong>Prophet</strong> - Time series forecasting</li>
+<li><strong>NLTK &amp; spaCy</strong> - Natural language processing</li>
+<li><strong>TextBlob</strong> - Sentiment analysis</li>
+</ul>
+<h3 id="visualization">Visualization</h3>
+<ul>
+<li><strong>Streamlit</strong> - Interactive dashboard framework</li>
+<li><strong>Plotly</strong> - Dynamic charts and graphs</li>
+<li><strong>Matplotlib &amp; Seaborn</strong> - Statistical plots</li>
+<li><strong>Altair</strong> - Declarative visualizations</li>
+</ul>
+<h3 id="devops">DevOps</h3>
+<ul>
+<li><strong>Docker</strong> - Containerization</li>
+<li><strong>GitHub Actions</strong> - CI/CD</li>
+<li><strong>pytest</strong> - Unit testing</li>
+<li><strong>pre-commit</strong> - Code quality hooks</li>
+</ul>
+<hr />
+<h2 id="installation">🚀 Installation</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Python 3.9 or higher</li>
+<li>PostgreSQL 12+ (or SQLite for development)</li>
+<li>YouTube Data API key</li>
+<li>Instagram Business Account (optional)</li>
+</ul>
+<h3 id="quick-start">Quick Start</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 1. Clone repository</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourusername/content-analytics-tool.git
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">cd</span><span class="w"> </span>content-analytics-tool
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 2. Create virtual environment</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">  </span><span class="c1"># On Windows: venv\Scripts\activate</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># 3. Install dependencies</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># 4. Set up environment variables</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># Edit .env with your API keys</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="c1"># 5. Initialize database</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;from src.database import init_db; init_db()&quot;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="c1"># 6. Run data collection</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>python<span class="w"> </span>scripts/collect_data.py
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="c1"># 7. Start dashboard</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>streamlit<span class="w"> </span>run<span class="w"> </span>app/streamlit_app.py
+</code></pre></div>
+<h3 id="docker-installation">Docker Installation</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Build and run with Docker Compose</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Access dashboard at http://localhost:8501</span>
+</code></pre></div>
+<hr />
+<h2 id="configuration">⚙️ Configuration</h2>
+<h3 id="environment-variables">Environment Variables</h3>
+<p>Create a <code>.env</code> file in the project root:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># YouTube API</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nv">YOUTUBE_API_KEY</span><span class="o">=</span>your_youtube_api_key_here
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nv">YOUTUBE_CLIENT_ID</span><span class="o">=</span>your_client_id
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nv">YOUTUBE_CLIENT_SECRET</span><span class="o">=</span>your_client_secret
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># Instagram API</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nv">INSTAGRAM_ACCESS_TOKEN</span><span class="o">=</span>your_instagram_token
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nv">INSTAGRAM_APP_ID</span><span class="o">=</span>your_app_id
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nv">INSTAGRAM_APP_SECRET</span><span class="o">=</span>your_app_secret
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># Database</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="nv">DATABASE_URL</span><span class="o">=</span>postgresql://user:password@localhost:5432/content_analytics
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c1"># For SQLite (development):</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="c1"># DATABASE_URL=sqlite:///data/content_analytics.db</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="c1"># Redis (optional)</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="nv">REDIS_URL</span><span class="o">=</span>redis://localhost:6379/0
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="c1"># Application</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="nv">SECRET_KEY</span><span class="o">=</span>your_secret_key_here
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="nv">ENVIRONMENT</span><span class="o">=</span>development
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="nv">DEBUG</span><span class="o">=</span>True
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="nv">LOG_LEVEL</span><span class="o">=</span>INFO
+</code></pre></div>
+<h3 id="api-setup-guide">API Setup Guide</h3>
+<h4 id="youtube-data-api-v3">YouTube Data API v3</h4>
+<ol>
+<li><strong>Create Google Cloud Project</strong></li>
+<li>Go to <a href="https://console.cloud.google.com/">Google Cloud Console</a></li>
+<li>Click "Create Project"</li>
+<li>
+<p>Name: "Content Analytics Tool"</p>
+</li>
+<li>
+<p><strong>Enable YouTube Data API</strong></p>
+</li>
+<li>Navigate to "APIs &amp; Services" → "Library"</li>
+<li>Search "YouTube Data API v3"</li>
+<li>
+<p>Click "Enable"</p>
+</li>
+<li>
+<p><strong>Create Credentials</strong></p>
+</li>
+<li>Go to "Credentials" → "Create Credentials"</li>
+<li>Select "API Key"</li>
+<li>
+<p>Copy key to <code>.env</code> file</p>
+</li>
+<li>
+<p><strong>Set Quota</strong></p>
+</li>
+<li>Free tier: 10,000 units/day</li>
+<li>Monitor usage in Cloud Console</li>
+</ol>
+<h4 id="instagram-graph-api">Instagram Graph API</h4>
+<ol>
+<li><strong>Create Facebook App</strong></li>
+<li>Go to <a href="https://developers.facebook.com/">Facebook Developers</a></li>
+<li>
+<p>Create new app → Business type</p>
+</li>
+<li>
+<p><strong>Add Instagram Product</strong></p>
+</li>
+<li>Dashboard → Add Product → Instagram</li>
+<li>
+<p>Complete setup wizard</p>
+</li>
+<li>
+<p><strong>Get Access Token</strong></p>
+</li>
+<li>Tools → Graph API Explorer</li>
+<li>Select your Instagram Business Account</li>
+<li>
+<p>Generate token with permissions: <code>instagram_basic</code>, <code>instagram_manage_insights</code></p>
+</li>
+<li>
+<p><strong>Convert to Long-Lived Token</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;https://graph.facebook.com/v18.0/oauth/access_token?</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="s2">  grant_type=fb_exchange_token&amp;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="s2">  client_id=YOUR_APP_ID&amp;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="s2">  client_secret=YOUR_APP_SECRET&amp;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="s2">  fb_exchange_token=SHORT_LIVED_TOKEN&quot;</span>
+</code></pre></div></p>
+</li>
+</ol>
+<hr />
+<h2 id="usage">📖 Usage</h2>
+<h3 id="basic-usage">Basic Usage</h3>
+<h4 id="1-collect-data-from-youtube-channel">1. Collect Data from YouTube Channel</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">src.api.youtube_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">YouTubeClient</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">src.database.queries</span><span class="w"> </span><span class="kn">import</span> <span class="n">YouTubeQueries</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Initialize client</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">youtube</span> <span class="o">=</span> <span class="n">YouTubeClient</span><span class="p">()</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Fetch MrBeast&#39;s channel data</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">channel_data</span> <span class="o">=</span> <span class="n">youtube</span><span class="o">.</span><span class="n">get_channel_stats</span><span class="p">(</span><span class="s1">&#39;UCX6OQ3DkcsbYNE6H8uQQuVA&#39;</span><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="n">YouTubeQueries</span><span class="o">.</span><span class="n">save_channel</span><span class="p">(</span><span class="n">channel_data</span><span class="p">)</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1"># Get recent videos</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="n">videos</span> <span class="o">=</span> <span class="n">youtube</span><span class="o">.</span><span class="n">get_recent_videos</span><span class="p">(</span><span class="s1">&#39;UCX6OQ3DkcsbYNE6H8uQQuVA&#39;</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="c1"># Save to database</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="k">for</span> <span class="n">video</span> <span class="ow">in</span> <span class="n">videos</span><span class="p">:</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>    <span class="n">YouTubeQueries</span><span class="o">.</span><span class="n">save_video</span><span class="p">(</span><span class="n">video</span><span class="p">)</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saved: </span><span class="si">{</span><span class="n">video</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">video</span><span class="p">[</span><span class="s1">&#39;views&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> views&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="2-analyze-channel-performance">2. Analyze Channel Performance</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">src.analytics.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">YouTubeAnalytics</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># Get comprehensive metrics</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">metrics</span> <span class="o">=</span> <span class="n">YouTubeAnalytics</span><span class="o">.</span><span class="n">get_channel_metrics</span><span class="p">(</span><span class="s1">&#39;UCX6OQ3DkcsbYNE6H8uQQuVA&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="s2">Channel Analytics:</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="s2">- Total Videos: </span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;total_videos&#39;</span><span class="p">]</span><span class="si">}</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="s2">- Total Views: </span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;total_views&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="s2">- Avg Views per Video: </span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;avg_views_per_video&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="s2">- Engagement Rate: </span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;avg_engagement_rate&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="s2">- Subscriber Growth (30d): +</span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;subscriber_growth&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="3-predict-viral-content">3. Predict Viral Content</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">src.ml.prediction</span><span class="w"> </span><span class="kn">import</span> <span class="n">ViralPredictor</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># Load trained model</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">predictor</span> <span class="o">=</span> <span class="n">ViralPredictor</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/models/viral_predictor.pkl&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1"># New video features</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">video_features</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="s1">&#39;title_length&#39;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="s1">&#39;has_number_in_title&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="s1">&#39;hour_posted&#39;</span><span class="p">:</span> <span class="mi">19</span><span class="p">,</span>  <span class="c1"># 7 PM</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="s1">&#39;day_of_week&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>   <span class="c1"># Friday</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="s1">&#39;duration_minutes&#39;</span><span class="p">:</span> <span class="mi">15</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="p">}</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="c1"># Predict</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="n">viral_probability</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">video_features</span><span class="p">)</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Viral Probability: </span><span class="si">{</span><span class="n">viral_probability</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="4-generate-reports">4. Generate Reports</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">src.reporting.generator</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReportGenerator</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># Create weekly report</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">report</span> <span class="o">=</span> <span class="n">ReportGenerator</span><span class="p">()</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">report</span><span class="o">.</span><span class="n">generate_weekly_report</span><span class="p">(</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">channel_id</span><span class="o">=</span><span class="s1">&#39;UCX6OQ3DkcsbYNE6H8uQQuVA&#39;</span><span class="p">,</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="n">output_format</span><span class="o">=</span><span class="s1">&#39;pdf&#39;</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">)</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✓ Report saved to: reports/weekly_report_2025_02_05.pdf&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="advanced-usage">Advanced Usage</h3>
+<h4 id="track-multiple-channels">Track Multiple Channels</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># scripts/track_channels.py</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">src.etl.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataCollectionPipeline</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">pipeline</span> <span class="o">=</span> <span class="n">DataCollectionPipeline</span><span class="p">()</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">channels_to_track</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="s1">&#39;UCX6OQ3DkcsbYNE6H8uQQuVA&#39;</span><span class="p">,</span>  <span class="c1"># MrBeast</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="s1">&#39;UCzJo1FjvvTYrQl2m7hrxOyw&#39;</span><span class="p">,</span>  <span class="c1"># IShowSpeed</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="s1">&#39;UCBJycsmduvYEL83R_U4JriQ&#39;</span>   <span class="c1"># MKBHD</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="p">]</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="k">for</span> <span class="n">channel_id</span> <span class="ow">in</span> <span class="n">channels_to_track</span><span class="p">:</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    <span class="n">stats</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">collect_youtube_data</span><span class="p">(</span><span class="n">channel_id</span><span class="p">)</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Collected: </span><span class="si">{</span><span class="n">stats</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="schedule-automated-collection">Schedule Automated Collection</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Using cron (Linux/Mac)</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># Add to crontab: crontab -e</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="mi">0</span> <span class="mi">2</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">cd</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">project</span> <span class="o">&amp;&amp;</span> <span class="n">python</span> <span class="n">scripts</span><span class="o">/</span><span class="n">daily_collection</span><span class="o">.</span><span class="n">py</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># Or use Python scheduler</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">src.etl.scheduler</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataScheduler</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="n">scheduler</span> <span class="o">=</span> <span class="n">DataScheduler</span><span class="p">()</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="n">scheduler</span><span class="o">.</span><span class="n">tracked_channels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;channel_id_1&#39;</span><span class="p">,</span> <span class="s1">&#39;channel_id_2&#39;</span><span class="p">]</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="n">scheduler</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>  <span class="c1"># Runs daily at 2 AM</span>
+</code></pre></div>
+<hr />
+<h2 id="project-structure">📁 Project Structure</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>content-analytics-tool/
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>├── app/
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>│   ├── streamlit_app.py          # Main dashboard
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>│   ├── components/
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>│   │   ├── kpi_cards.py           # Metric display cards
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>│   │   ├── charts.py              # Chart components
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>│   │   └── tables.py              # Data tables
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>│   └── pages/
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>│       ├── overview.py            # Overview page
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>│       ├── analytics.py           # Analytics page
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>│       └── predictions.py         # ML predictions page
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>├── src/
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>│   ├── api/
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>│   │   ├── youtube_client.py      # YouTube API client
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>│   │   ├── instagram_client.py    # Instagram API client
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>│   │   └── rate_limiter.py        # Rate limiting
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>│   ├── database/
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>│   │   ├── models.py              # SQLAlchemy models
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>│   │   ├── queries.py             # Database queries
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>│   │   └── __init__.py            # DB connection
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>│   ├── analytics/
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>│   │   ├── metrics.py             # Metric calculations
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>│   │   ├── trends.py              # Trend analysis
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>│   │   └── benchmarks.py          # Benchmarking
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a>│   ├── ml/
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a>│   │   ├── prediction.py          # Viral prediction
+<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>│   │   ├── forecasting.py         # Time series
+<a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>│   │   ├── sentiment.py           # Sentiment analysis
+<a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a>│   │   └── features.py            # Feature engineering
+<a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a>│   ├── etl/
+<a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a>│   │   ├── pipeline.py            # Data collection
+<a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a>│   │   └── scheduler.py           # Scheduled tasks
+<a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a>│   └── utils/
+<a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a>│       ├── helpers.py             # Utility functions
+<a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a>│       └── validators.py          # Data validation
+<a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a>├── tests/
+<a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a>│   ├── test_api.py                # API tests
+<a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a>│   ├── test_analytics.py          # Analytics tests
+<a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a>│   ├── test_ml.py                 # ML model tests
+<a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a>│   └── test_database.py           # Database tests
+<a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a>├── data/
+<a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a>│   ├── raw/                       # Raw data files
+<a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a>│   ├── processed/                 # Processed data
+<a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a>│   └── models/                    # Trained ML models
+<a id="__codelineno-10-45" name="__codelineno-10-45" href="#__codelineno-10-45"></a>├── notebooks/
+<a id="__codelineno-10-46" name="__codelineno-10-46" href="#__codelineno-10-46"></a>│   ├── 01_data_exploration.ipynb  # EDA
+<a id="__codelineno-10-47" name="__codelineno-10-47" href="#__codelineno-10-47"></a>│   ├── 02_feature_engineering.ipynb
+<a id="__codelineno-10-48" name="__codelineno-10-48" href="#__codelineno-10-48"></a>│   └── 03_model_development.ipynb
+<a id="__codelineno-10-49" name="__codelineno-10-49" href="#__codelineno-10-49"></a>├── scripts/
+<a id="__codelineno-10-50" name="__codelineno-10-50" href="#__codelineno-10-50"></a>│   ├── collect_data.py            # Manual data collection
+<a id="__codelineno-10-51" name="__codelineno-10-51" href="#__codelineno-10-51"></a>│   ├── train_models.py            # Train ML models
+<a id="__codelineno-10-52" name="__codelineno-10-52" href="#__codelineno-10-52"></a>│   └── seed_database.py           # Seed with sample data
+<a id="__codelineno-10-53" name="__codelineno-10-53" href="#__codelineno-10-53"></a>├── docs/
+<a id="__codelineno-10-54" name="__codelineno-10-54" href="#__codelineno-10-54"></a>│   ├── api_documentation.md       # API docs
+<a id="__codelineno-10-55" name="__codelineno-10-55" href="#__codelineno-10-55"></a>│   ├── architecture.md            # System design
+<a id="__codelineno-10-56" name="__codelineno-10-56" href="#__codelineno-10-56"></a>│   └── deployment.md              # Deployment guide
+<a id="__codelineno-10-57" name="__codelineno-10-57" href="#__codelineno-10-57"></a>├── .env.example                   # Environment template
+<a id="__codelineno-10-58" name="__codelineno-10-58" href="#__codelineno-10-58"></a>├── .gitignore
+<a id="__codelineno-10-59" name="__codelineno-10-59" href="#__codelineno-10-59"></a>├── requirements.txt               # Python dependencies
+<a id="__codelineno-10-60" name="__codelineno-10-60" href="#__codelineno-10-60"></a>├── Dockerfile
+<a id="__codelineno-10-61" name="__codelineno-10-61" href="#__codelineno-10-61"></a>├── docker-compose.yml
+<a id="__codelineno-10-62" name="__codelineno-10-62" href="#__codelineno-10-62"></a>├── pytest.ini                     # Test configuration
+<a id="__codelineno-10-63" name="__codelineno-10-63" href="#__codelineno-10-63"></a>└── README.md                      # This file
+</code></pre></div>
+<hr />
+<h2 id="api-documentation">📡 API Documentation</h2>
+<h3 id="youtube-client-api">YouTube Client API</h3>
+<h4 id="get-channel-statistics">Get Channel Statistics</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">youtube_client</span><span class="o">.</span><span class="n">get_channel_stats</span><span class="p">(</span><span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">Returns</span><span class="p">:</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="p">{</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="s1">&#39;channel_id&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="s1">&#39;subscribers&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>    <span class="s1">&#39;total_views&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="s1">&#39;total_videos&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>    <span class="s1">&#39;published_at&#39;</span><span class="p">:</span> <span class="n">datetime</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="p">}</span>
+</code></pre></div>
+<h4 id="get-recent-videos">Get Recent Videos</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">youtube_client</span><span class="o">.</span><span class="n">get_recent_videos</span><span class="p">(</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="n">max_results</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="n">Returns</span><span class="p">:</span> <span class="n">List</span> <span class="n">of</span> <span class="n">video</span> <span class="n">objects</span> <span class="k">with</span> <span class="n">views</span><span class="p">,</span> <span class="n">likes</span><span class="p">,</span> <span class="n">comments</span>
+</code></pre></div>
+<h4 id="get-video-comments">Get Video Comments</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">youtube_client</span><span class="o">.</span><span class="n">get_video_comments</span><span class="p">(</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="n">video_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="n">max_results</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="n">Returns</span><span class="p">:</span> <span class="n">List</span> <span class="n">of</span> <span class="n">comment</span> <span class="n">objects</span>
+</code></pre></div>
+<h3 id="analytics-api">Analytics API</h3>
+<h4 id="calculate-engagement-rate">Calculate Engagement Rate</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">YouTubeAnalytics</span><span class="o">.</span><span class="n">calculate_engagement_rate</span><span class="p">(</span><span class="n">video</span><span class="p">:</span> <span class="n">YouTubeVideo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">Formula</span><span class="p">:</span> <span class="p">(</span><span class="n">likes</span> <span class="o">+</span> <span class="n">comments</span><span class="p">)</span> <span class="o">/</span> <span class="n">views</span> <span class="o">*</span> <span class="mi">100</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">Returns</span><span class="p">:</span> <span class="n">Percentage</span> <span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="get-channel-metrics">Get Channel Metrics</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">YouTubeAnalytics</span><span class="o">.</span><span class="n">get_channel_metrics</span><span class="p">(</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="n">days</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="n">Returns</span><span class="p">:</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="p">{</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="s1">&#39;total_videos&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    <span class="s1">&#39;total_views&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="s1">&#39;avg_views_per_video&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    <span class="s1">&#39;avg_engagement_rate&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="s1">&#39;subscriber_growth&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>    <span class="s1">&#39;view_growth&#39;</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="machine-learning-models">🤖 Machine Learning Models</h2>
+<h3 id="1-viral-content-prediction">1. Viral Content Prediction</h3>
+<p><strong>Model:</strong> Random Forest Classifier<br />
+<strong>Accuracy:</strong> 78.3%<br />
+<strong>Features (15):</strong>
+- Title length
+- Has number in title
+- Upload hour
+- Day of week
+- Video duration
+- Thumbnail quality score
+- Channel authority score
+- Historical avg views
+- Category
+- Tags count
+- Description length
+- Has custom thumbnail
+- Time since last upload
+- Previous video performance
+- Seasonal factor</p>
+<p><strong>Performance Metrics:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Precision: 0.76
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>Recall: 0.81
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>F1 Score: 0.78
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>ROC-AUC: 0.84
+</code></pre></div></p>
+<p><strong>Usage:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">src.ml.prediction</span><span class="w"> </span><span class="kn">import</span> <span class="n">ViralPredictor</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="n">model</span> <span class="o">=</span> <span class="n">ViralPredictor</span><span class="p">()</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">training_data</span><span class="p">)</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="c1"># Predict</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="n">features</span> <span class="o">=</span> <span class="n">extract_features</span><span class="p">(</span><span class="n">new_video</span><span class="p">)</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="n">probability</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="2-engagement-forecasting">2. Engagement Forecasting</h3>
+<p><strong>Model:</strong> Prophet (Facebook)<br />
+<strong>MAPE:</strong> 15.2%<br />
+<strong>Forecast Horizon:</strong> 30 days</p>
+<p><strong>Features:</strong>
+- Historical engagement data
+- Seasonality (daily, weekly)
+- Trend component
+- Holiday effects</p>
+<p><strong>Usage:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">src.ml.forecasting</span><span class="w"> </span><span class="kn">import</span> <span class="n">EngagementForecaster</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="n">forecaster</span> <span class="o">=</span> <span class="n">EngagementForecaster</span><span class="p">()</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="n">forecast</span> <span class="o">=</span> <span class="n">forecaster</span><span class="o">.</span><span class="n">predict_next_30_days</span><span class="p">(</span><span class="n">channel_id</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="3-sentiment-analysis">3. Sentiment Analysis</h3>
+<p><strong>Model:</strong> VADER + TextBlob ensemble<br />
+<strong>Accuracy:</strong> 82%</p>
+<p><strong>Classes:</strong>
+- Positive (&gt;0.5)
+- Neutral (-0.5 to 0.5)
+- Negative (&lt;-0.5)</p>
+<p><strong>Usage:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">src.ml.sentiment</span><span class="w"> </span><span class="kn">import</span> <span class="n">SentimentAnalyzer</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="n">analyzer</span> <span class="o">=</span> <span class="n">SentimentAnalyzer</span><span class="p">()</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="n">sentiment</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="s2">&quot;This video is amazing!&quot;</span><span class="p">)</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="c1"># Returns: {&#39;label&#39;: &#39;positive&#39;, &#39;score&#39;: 0.89}</span>
+</code></pre></div></p>
+<hr />
+<h2 id="analytics-metrics">📊 Analytics Metrics</h2>
+<h3 id="engagement-metrics">Engagement Metrics</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Formula</th>
+<th>Benchmark</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Engagement Rate</strong></td>
+<td>(Likes + Comments) / Views × 100</td>
+<td>3-6% (good)</td>
+</tr>
+<tr>
+<td><strong>Like Rate</strong></td>
+<td>Likes / Views × 100</td>
+<td>4-8% (good)</td>
+</tr>
+<tr>
+<td><strong>Comment Rate</strong></td>
+<td>Comments / Views × 100</td>
+<td>0.5-1% (good)</td>
+</tr>
+<tr>
+<td><strong>CTR</strong></td>
+<td>Clicks / Impressions × 100</td>
+<td>4-10% (good)</td>
+</tr>
+<tr>
+<td><strong>Watch Time</strong></td>
+<td>Avg View Duration / Video Length</td>
+<td>&gt;50% (good)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="growth-metrics">Growth Metrics</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Formula</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Subscriber Growth Rate</strong></td>
+<td>(New Subs - Lost Subs) / Total Subs × 100</td>
+<td>Monthly growth %</td>
+</tr>
+<tr>
+<td><strong>View Growth Rate</strong></td>
+<td>(Current Views - Previous Views) / Previous Views × 100</td>
+<td>View velocity</td>
+</tr>
+<tr>
+<td><strong>Follower Velocity</strong></td>
+<td>New Followers / Day</td>
+<td>Daily growth rate</td>
+</tr>
+</tbody>
+</table>
+<h3 id="content-performance">Content Performance</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Description</th>
+<th>Threshold</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Viral Score</strong></td>
+<td>Views / Channel Avg Views</td>
+<td>&gt;1.5x = viral</td>
+</tr>
+<tr>
+<td><strong>Engagement Velocity</strong></td>
+<td>Engagement / Hours Since Upload</td>
+<td>Higher = faster growth</td>
+</tr>
+<tr>
+<td><strong>Share Rate</strong></td>
+<td>Shares / Views × 100</td>
+<td>&gt;0.5% = highly shareable</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="testing">🧪 Testing</h2>
+<h3 id="run-all-tests">Run All Tests</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Run full test suite</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>pytest<span class="w"> </span>tests/<span class="w"> </span>-v
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># Run with coverage</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>pytest<span class="w"> </span>tests/<span class="w"> </span>--cov<span class="o">=</span>src<span class="w"> </span>--cov-report<span class="o">=</span>html
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="c1"># Run specific test file</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>pytest<span class="w"> </span>tests/test_analytics.py<span class="w"> </span>-v
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="c1"># Run specific test</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>pytest<span class="w"> </span>tests/test_analytics.py::test_engagement_rate<span class="w"> </span>-v
+</code></pre></div>
+<h3 id="test-coverage">Test Coverage</h3>
+<p>Current coverage: <strong>72%</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>src/api/youtube_client.py      85%
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>src/analytics/metrics.py        91%
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>src/ml/prediction.py            68%
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>src/database/queries.py         79%
+</code></pre></div>
+<h3 id="data-quality-validation">Data Quality Validation</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Run data quality checks</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>python<span class="w"> </span>tests/validate_data_quality.py
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># Expected output:</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="c1"># ✓ All 150 videos have complete data</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="c1"># ✓ 142/150 videos updated in last 7 days</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="c1"># ✓ All metrics within valid ranges</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="c1"># ✓ No duplicate records found</span>
+</code></pre></div>
+<hr />
+<h2 id="deployment">🚢 Deployment</h2>
+<h3 id="streamlit-cloud-recommended">Streamlit Cloud (Recommended)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># 1. Push to GitHub</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="c1"># 2. Go to streamlit.io/cloud</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="c1"># 3. Connect your GitHub repository</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="c1"># 4. Add secrets in dashboard:</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="c1">#    - YOUTUBE_API_KEY</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="c1">#    - DATABASE_URL</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="c1">#    - SECRET_KEY</span>
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="c1"># 5. Deploy! 🎉</span>
+</code></pre></div>
+<h3 id="heroku">Heroku</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># 1. Create Procfile</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;web: streamlit run app/streamlit_app.py --server.port=\$PORT&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>Procfile
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="c1"># 2. Create Heroku app</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>heroku<span class="w"> </span>create<span class="w"> </span>your-app-name
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="c1"># 3. Add PostgreSQL</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>heroku<span class="w"> </span>addons:create<span class="w"> </span>heroku-postgresql:hobby-dev
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="c1"># 4. Set environment variables</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>heroku<span class="w"> </span>config:set<span class="w"> </span><span class="nv">YOUTUBE_API_KEY</span><span class="o">=</span>your_key
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>
+<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="c1"># 5. Deploy</span>
+<a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a>git<span class="w"> </span>push<span class="w"> </span>heroku<span class="w"> </span>main
+<a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a>
+<a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a><span class="c1"># 6. Open app</span>
+<a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a>heroku<span class="w"> </span>open
+</code></pre></div>
+<h3 id="docker">Docker</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Build image</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>content-analytics<span class="w"> </span>.
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1"># Run container</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8501</span>:8501<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">YOUTUBE_API_KEY</span><span class="o">=</span>your_key<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">DATABASE_URL</span><span class="o">=</span>your_db_url<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">  </span>content-analytics
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="c1"># Access at http://localhost:8501</span>
+</code></pre></div>
+<h3 id="production-considerations">Production Considerations</h3>
+<ul>
+<li><strong>Database:</strong> Use managed PostgreSQL (AWS RDS, Heroku Postgres)</li>
+<li><strong>Caching:</strong> Redis for API response caching</li>
+<li><strong>Monitoring:</strong> Sentry for error tracking</li>
+<li><strong>Logging:</strong> CloudWatch or Papertrail</li>
+<li><strong>CDN:</strong> CloudFlare for static assets</li>
+<li><strong>SSL:</strong> Enable HTTPS</li>
+<li><strong>Backups:</strong> Daily automated database backups</li>
+</ul>
+<hr />
+<h2 id="results-insights">📈 Results &amp; Insights</h2>
+<h3 id="project-metrics">Project Metrics</h3>
+<p><strong>Data Collection:</strong>
+- 150+ videos analyzed
+- 5 channels tracked
+- 50,000+ data points collected
+- 12 months of historical data</p>
+<p><strong>Analytics Performance:</strong>
+- 10+ metrics calculated
+- &lt;2s query response time
+- 99.9% uptime
+- 60+ videos processed daily</p>
+<p><strong>ML Model Performance:</strong>
+- Viral prediction: 78% accuracy
+- Engagement forecast: MAPE 15%
+- Sentiment analysis: 82% accuracy</p>
+<h3 id="key-findings">Key Findings</h3>
+<ol>
+<li><strong>Optimal Posting Time:</strong> Friday 6-8 PM EST shows 35% higher engagement</li>
+<li><strong>Title Length:</strong> 40-60 characters perform best</li>
+<li><strong>Thumbnail Impact:</strong> Custom thumbnails increase CTR by 87%</li>
+<li><strong>Video Duration:</strong> 10-15 minutes ideal for retention</li>
+<li><strong>Hashtag Strategy:</strong> 3-5 relevant hashtags maximize reach</li>
+</ol>
+<h3 id="business-impact_1">Business Impact</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Before</th>
+<th>After</th>
+<th>Improvement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Manual Analysis Time</td>
+<td>10 hrs/week</td>
+<td>1 hr/week</td>
+<td><strong>90% reduction</strong></td>
+</tr>
+<tr>
+<td>Data-Driven Decisions</td>
+<td>30%</td>
+<td>85%</td>
+<td><strong>+55 points</strong></td>
+</tr>
+<tr>
+<td>Posting Accuracy</td>
+<td>Random</td>
+<td>Optimized</td>
+<td><strong>35% engagement boost</strong></td>
+</tr>
+<tr>
+<td>Viral Hit Rate</td>
+<td>1/20 videos</td>
+<td>1/8 videos</td>
+<td><strong>150% increase</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="contributing">🤝 Contributing</h2>
+<p>Contributions are welcome! Please follow these guidelines:</p>
+<h3 id="how-to-contribute">How to Contribute</h3>
+<ol>
+<li><strong>Fork the repository</strong></li>
+<li><strong>Create a feature branch</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/amazing-feature
+</code></pre></div></li>
+<li><strong>Make your changes</strong></li>
+<li><strong>Write tests</strong> for new features</li>
+<li><strong>Run tests</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>pytest<span class="w"> </span>tests/<span class="w"> </span>-v
+</code></pre></div></li>
+<li><strong>Commit your changes</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add amazing feature&quot;</span>
+</code></pre></div></li>
+<li><strong>Push to branch</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/amazing-feature
+</code></pre></div></li>
+<li><strong>Open a Pull Request</strong></li>
+</ol>
+<h3 id="code-style">Code Style</h3>
+<ul>
+<li>Follow PEP 8</li>
+<li>Use type hints</li>
+<li>Add docstrings to functions</li>
+<li>Keep functions under 50 lines</li>
+<li>Write meaningful commit messages</li>
+</ul>
+<h3 id="testing-requirements">Testing Requirements</h3>
+<ul>
+<li>Unit tests for all new functions</li>
+<li>Maintain &gt;70% code coverage</li>
+<li>All tests must pass</li>
+</ul>
+<hr />
+<h2 id="license">📄 License</h2>
+<p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>MIT License
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>Copyright (c) 2025 Sourav Chandak
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>Permission is hereby granted, free of charge, to any person obtaining a copy
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>of this software and associated documentation files (the &quot;Software&quot;), to deal
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>in the Software without restriction, including without limitation the rights
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a>copies of the Software, and to permit persons to whom the Software is
+<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a>furnished to do so, subject to the following conditions:
+<a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a>
+<a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a>The above copyright notice and this permission notice shall be included in all
+<a id="__codelineno-30-13" name="__codelineno-30-13" href="#__codelineno-30-13"></a>copies or substantial portions of the Software.
+</code></pre></div>
+<hr />
+<h2 id="contact">📞 Contact</h2>
+<p><strong>Sourav Chandak</strong></p>
+<ul>
+<li>📧 Email: souravchandak0001@gmail.com</li>
+<li>💼 LinkedIn: <a href="https://linkedin.com/in/sourav-chandak">linkedin.com/in/sourav-chandak</a></li>
+<li>🐙 GitHub: <a href="https://github.com/souravchandak11">github.com/souravchandak11</a></li>
+<li>🌐 Portfolio: <a href="#">your-portfolio.com</a></li>
+</ul>
+<hr />
+<h2 id="acknowledgments">🙏 Acknowledgments</h2>
+<ul>
+<li><strong>YouTube Data API</strong> - Google for API access</li>
+<li><strong>Streamlit</strong> - For amazing dashboard framework</li>
+<li><strong>Scikit-learn</strong> - For ML tools</li>
+<li><strong>MrBeast, IShowSpeed, MKBHD</strong> - For publicly available data</li>
+<li><strong>Open Source Community</strong> - For incredible libraries</li>
+</ul>
+<hr />
+<h2 id="additional-resources">📚 Additional Resources</h2>
+<ul>
+<li><a href="https://developers.google.com/youtube/v3">YouTube API Documentation</a></li>
+<li><a href="https://developers.facebook.com/docs/instagram-api">Instagram Graph API Docs</a></li>
+<li><a href="https://docs.streamlit.io">Streamlit Documentation</a></li>
+<li><a href="https://scikit-learn.org/stable/user_guide.html">Scikit-learn User Guide</a></li>
+<li><a href="https://facebook.github.io/prophet/">Prophet Forecasting</a></li>
+</ul>
+<hr />
+<h2 id="roadmap">🗺️ Roadmap</h2>
+<h3 id="q1-2025">Q1 2025</h3>
+<ul>
+<li>[ ] Add TikTok API integration</li>
+<li>[ ] Implement competitor tracking</li>
+<li>[ ] Mobile app development</li>
+</ul>
+<h3 id="q2-2025">Q2 2025</h3>
+<ul>
+<li>[ ] Add Twitter/X analytics</li>
+<li>[ ] Email notification system</li>
+<li>[ ] Advanced A/B testing tools</li>
+</ul>
+<h3 id="q3-2025">Q3 2025</h3>
+<ul>
+<li>[ ] Multi-user support</li>
+<li>[ ] Team collaboration features</li>
+<li>[ ] API for third-party integration</li>
+</ul>
+<h3 id="q4-2025">Q4 2025</h3>
+<ul>
+<li>[ ] Chrome extension</li>
+<li>[ ] White-label version</li>
+<li>[ ] Enterprise tier</li>
+</ul>
+<hr />
+<h2 id="star-history">⭐ Star History</h2>
+<p>[<img alt="Star History Chart" src="https://api.star-history.com/svg?repos=yourusername/content-analytics-tool&amp;type=Date" />](https://star-history.com/#you</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
