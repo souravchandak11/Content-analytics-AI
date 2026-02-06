@@ -98,63 +98,24 @@ An intelligent analytics platform that:
 ### Dashboard Screenshots
 
 **Main Dashboard - Overview**
-```
-┌─────────────────────────────────────────────────────────────┐
-│ 🎥 Content Analytics Dashboard                              │
-├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  📊 Total Views    👍 Engagement    📈 Growth    ⭐ Viral   │
-│     61.5B             5.67%          +2.8M        156      │
-│                                                              │
-│  ┌────────────────────────────────────────────────────┐    │
-│  │         Video Performance Over Time                 │    │
-│  │  Views                                              │    │
-│  │   ▲                                                 │    │
-│  │   │     ╱╲                                          │    │
-│  │   │    ╱  ╲        ╱╲                               │    │
-│  │   │   ╱    ╲      ╱  ╲     ╱╲                       │    │
-│  │   │  ╱      ╲    ╱    ╲   ╱  ╲                      │    │
-│  │   └──────────────────────────────────────►          │    │
-│  │        Jan   Feb   Mar   Apr   May   Jun            │    │
-│  └────────────────────────────────────────────────────┘    │
-│                                                              │
-│  🏆 Top 5 Performing Videos                                 │
-│  ┌──────────────────────────────────────────────────┐      │
-│  │ 1. $1 vs $1M Hotel        156M views   8.2M 👍   │      │
-│  │ 2. 100 Houses Giveaway    142M views   7.8M 👍   │      │
-│  │ 3. 7 Days Solitary        128M views   6.9M 👍   │      │
-│  └──────────────────────────────────────────────────┘      │
-└─────────────────────────────────────────────────────────────┘
-```
+**Main Dashboard - Overview**
+![Main Dashboard Overview](assets/images/dashboard-overview.png)
+*Real-time performance metrics and viewer analytics*
 
 **ML Prediction Interface**
-```
-┌─────────────────────────────────────────────────────────────┐
-│ 🤖 Viral Prediction Engine                                  │
-├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  Video Title: "I Gave Away $1,000,000"                      │
-│  Upload Time: Friday 7:00 PM                                │
-│  Duration:    15:30                                          │
-│  Thumbnail:   High Contrast ✓                               │
-│                                                              │
-│  ┌────────────────────────────────────────────────────┐    │
-│  │   Viral Probability:  87%  🔥                       │    │
-│  │   ████████████████████░░░░                          │    │
-│  │                                                      │    │
-│  │   Expected Views:     45M - 65M                     │    │
-│  │   Confidence:         High                          │    │
-│  └────────────────────────────────────────────────────┘    │
-│                                                              │
-│  📋 Recommendations:                                         │
-│  ✓ Optimal posting time (Friday evening)                    │
-│  ✓ Strong clickbait title with number                       │
-│  ⚠ Consider adding thumbnail face emotion                   │
-└─────────────────────────────────────────────────────────────┘
-```
+**ML Prediction Interface**
+![ML Prediction Interface](assets/images/ml-prediction.png)
+*Viral probability forecasting engine*
 
 ### Video Demo
 📹 **[Watch 3-Minute Demo Video](#)** - See the platform in action
+
+<br>
+
+**Additional Views**
+| Analytics Breakdown | Audience Sentiment |
+|-------------------|-------------------|
+| ![Analytics Breakdown](assets/images/analytics-breakdown.png) | ![Audience Sentiment](assets/images/audience-sentiment.png) |
 
 ---
 
