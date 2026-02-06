@@ -1,16 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
-import MetricCard from '../components/ui/MetricCard';
-import { GrowthChart, EngagementBarChart, SentimentPieChart } from '../components/ui/Charts';
-import { analyticsApi } from '../lib/api';
+import MetricCard from '@/components/ui/MetricCard';
+import { GrowthChart, EngagementBarChart, SentimentPieChart } from '@/components/ui/Charts';
+import { analyticsApi } from '@/lib/api';
+import { useCreator } from '@/context/CreatorContext';
 import { PlayCircle, Camera, Loader2, TrendingUp, TrendingDown, Star, Youtube, Instagram, Activity, BarChart3, PieChart } from 'lucide-react';
 
 const DashboardOverview = () => {
+    const { selectedCreatorId } = useCreator();
     const { data: overview, isLoading, error } = useQuery<any>({
-        queryKey: ['overview'],
-        queryFn: analyticsApi.getOverview,
+        queryKey: ['overview', selectedCreatorId],
+        queryFn: () => analyticsApi.getOverview(selectedCreatorId),
         refetchInterval: 30000, // Refresh every 30 seconds
+        retry: 1,
+        retryDelay: 1000,
     });
 
     if (isLoading) {

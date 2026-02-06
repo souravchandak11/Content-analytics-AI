@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Search, User } from 'lucide-react';
+import { Menu, X, Search, User, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCreator } from '@/context/CreatorContext';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +14,47 @@ const Navbar = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const CreatorSelector = () => {
+        const { selectedCreator, setSelectedCreatorId, availableCreators } = useCreator();
+        const [showDropdown, setShowDropdown] = useState(false);
+
+        return (
+            <div className="relative">
+                <button
+                    onClick={() => setShowDropdown(!showDropdown)}
+                    className="flex items-center gap-2 px-3 py-1.5 bg-white border border-charcoal/10 rounded-md hover:border-primary/50 transition-colors"
+                >
+                    <span className="text-[10px] uppercase font-bold tracking-wider truncate max-w-[100px]">
+                        {selectedCreator?.name || 'Select Creator'}
+                    </span>
+                    <ChevronDown size={14} className="text-charcoal/60" />
+                </button>
+
+                {showDropdown && (
+                    <div className="absolute top-full right-0 mt-2 w-48 bg-white border border-charcoal/10 rounded-md shadow-lg py-2 z-50 max-h-60 overflow-y-auto">
+                        <div className="px-3 py-1 mb-1 text-[9px] uppercase text-muted-gray font-bold tracking-widest border-b border-charcoal/5">
+                            Select Creator
+                        </div>
+                        {availableCreators.map(creator => (
+                            <button
+                                key={creator.id}
+                                onClick={() => {
+                                    setSelectedCreatorId(creator.id);
+                                    setShowDropdown(false);
+                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }}
+                                className={`w-full text-left px-4 py-2 text-xs hover:bg-offwhite transition-colors flex items-center justify-between ${selectedCreator?.id === creator.id ? 'text-primary font-bold' : 'text-charcoal'}`}
+                            >
+                                {creator.name}
+                                <span className="text-[8px] uppercase text-muted-gray">{creator.platform === 'YouTube' ? 'YT' : 'IG'}</span>
+                            </button>
+                        ))}
+                    </div>
+                )}
+            </div>
+        );
+    };
 
     const navLinks = [
         { name: 'Overview', path: '/' },
@@ -51,6 +93,7 @@ const Navbar = () => {
                     </div>
 
                     <div className="flex items-center gap-5 border-l border-charcoal/10 pl-8">
+                        <CreatorSelector />
                         <button onClick={() => setIsOpen(!isOpen)} className="hover:text-primary transition-colors">
                             {isOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>

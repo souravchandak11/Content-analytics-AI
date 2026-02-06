@@ -5,16 +5,18 @@ import { Sparkles, TrendingUp, BarChart, Zap, ChevronRight, Loader2, Youtube, Ta
 import { analyticsApi } from '@/lib/api';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 
+import { useCreator } from '@/context/CreatorContext';
+
 const PredictiveIntelligence = () => {
-    const [selectedChannelId, setSelectedChannelId] = useState<string | null>(null);
+    const { selectedCreatorId } = useCreator();
+    const channelId = selectedCreatorId;
 
-    const { data: channels } = useQuery<any[]>({
-        queryKey: ['youtube-channels'],
-        queryFn: analyticsApi.listYoutubeChannels,
+    // Fetch channel details (assuming metrics endpoint gives us Channel info)
+    const { data: selectedChannel, isLoading: channelLoading } = useQuery<any>({
+        queryKey: ['youtube-metrics', channelId],
+        queryFn: () => analyticsApi.getYoutubeMetrics(channelId!),
+        enabled: !!channelId,
     });
-
-    const channelId = selectedChannelId || channels?.[0]?.channel_id;
-    const selectedChannel = channels?.find((c: any) => c.channel_id === channelId);
 
     const { data: forecast, isLoading } = useQuery<any>({
         queryKey: ['forecast', channelId],
@@ -30,27 +32,78 @@ const PredictiveIntelligence = () => {
         );
     }
 
-    // Transform forecast data for Recharts
+    // Simulation State
+    const [simParams, setSimParams] = useState({
+        frequency: 1, // 1.0 = baseline (e.g. 3 posts/week)
+        adSpend: 1,   // 1.0 = baseline ($1.2k)
+        sentiment: 1  // 1.0 = baseline (Positive)
+    });
+
+    // Simulation effect multipliers (simplified model)
+    // Frequency: +20% growth per +1x frequency
+    // Ad Spend: +15% growth per +1x spend
+    // Sentiment: +30% growth per +1x sentiment score
+    const calculateSimulationMultiplier = () => {
+        const freqEffect = (simParams.frequency - 1) * 0.2;
+        const adEffect = (simParams.adSpend - 1) * 0.15;
+        const sentEffect = (simParams.sentiment - 1) * 0.3;
+        return 1 + freqEffect + adEffect + sentEffect;
+    };
+
+    const simMultiplier = calculateSimulationMultiplier();
+
+    // Transform forecast data for Recharts with Simulation
     const chartData = (forecast?.forecast?.slice(0, 12) || []).map((f: any, i: number) => {
         const date = new Date(f.date || f.ds);
+        const baselineValue = Math.round(f.predicted || f.yhat || 0);
+
+        // Apply cumulative compound effect for simulation to show divergence over time
+        // We use 'i' to simulate time-based compounding
+        const timeFactor = 1 + (i * 0.05);
+        const simulatedValue = Math.round(baselineValue * (1 + ((simMultiplier - 1) * timeFactor)));
+
         return {
             name: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-            value: Math.round(f.predicted || f.yhat || 0),
+            value: baselineValue,             // Original
+            simulated: simulatedValue,        // New Simulated series
             upper: Math.round(f.upper_bound || f.yhat_upper || 0),
             lower: Math.round(f.lower_bound || f.yhat_lower || 0)
         };
     });
 
-    // Calculate growth metrics
+    // Calculate growth metrics based on SIMULATION
     const currentSubs = selectedChannel?.subscribers || forecast?.forecast?.[0]?.yhat || 0;
-    const predictedSubs = forecast?.forecast?.[forecast?.forecast?.length - 1]?.yhat || currentSubs;
-    const growthPercent = ((predictedSubs - currentSubs) / currentSubs * 100).toFixed(1);
-    const predictedViews = forecast?.predicted_views || (selectedChannel?.total_views ? selectedChannel.total_views * 1.15 : 0) || 0;
+    const originalPredictedSubs = forecast?.forecast?.[forecast?.forecast?.length - 1]?.yhat || currentSubs;
+    const simulatedPredictedSubs = chartData.length > 0 ? chartData[chartData.length - 1].simulated : originalPredictedSubs;
+
+    // Display growth of the SIMULATED outcome
+    const growthPercent = (currentSubs > 0 && simulatedPredictedSubs > 0)
+        ? ((simulatedPredictedSubs - currentSubs) / currentSubs * 100).toFixed(1)
+        : "0.0";
+    const growthDelta = simulatedPredictedSubs - originalPredictedSubs; // Difference caused by simulation
 
     const simulationSliders = [
-        { label: "Post Frequency", value: "3 / Week" },
-        { label: "Ad Spend Intensity", value: "$1.2k" },
-        { label: "Audience Sentiment", value: "Positive" }
+        {
+            label: "Post Frequency",
+            value: simParams.frequency,
+            display: `${(3 * simParams.frequency).toFixed(0)} / Week`,
+            min: 0.5, max: 3.0, step: 0.5,
+            param: 'frequency'
+        },
+        {
+            label: "Ad Spend Intensity",
+            value: simParams.adSpend,
+            display: `$${(1.2 * simParams.adSpend).toFixed(1)}k`,
+            min: 0, max: 5.0, step: 0.5,
+            param: 'adSpend'
+        },
+        {
+            label: "Audience Sentiment",
+            value: simParams.sentiment,
+            display: simParams.sentiment > 1.2 ? "Viral" : simParams.sentiment > 0.8 ? "Positive" : "Neutral",
+            min: 0.5, max: 1.5, step: 0.1,
+            param: 'sentiment'
+        }
     ];
 
     return (
@@ -109,19 +162,7 @@ const PredictiveIntelligence = () => {
                         </div>
                     )}
 
-                    {channels && channels.length > 1 && (
-                        <select
-                            value={channelId || ''}
-                            onChange={(e) => setSelectedChannelId(e.target.value)}
-                            className="mt-4 w-full text-[10px] uppercase tracking-widest font-bold border border-charcoal/20 p-2 bg-white"
-                        >
-                            {channels.map((ch: any) => (
-                                <option key={ch.channel_id} value={ch.channel_id}>
-                                    {ch.title}
-                                </option>
-                            ))}
-                        </select>
-                    )}
+                    {/* Channel Selector - Removed in favor of Global Context */}
                 </div>
             </header>
 
@@ -180,27 +221,22 @@ const PredictiveIntelligence = () => {
                                     />
                                     <Area
                                         type="monotone"
-                                        dataKey="upper"
-                                        stroke="none"
+                                        dataKey="value"
+                                        stroke="#8ba88e"
+                                        strokeWidth={1}
+                                        strokeDasharray="5 5"
                                         fill="url(#colorConfidence)"
-                                        animationDuration={2000}
+                                        name="Baseline"
+                                        animationDuration={1000}
                                     />
                                     <Area
                                         type="monotone"
-                                        dataKey="value"
+                                        dataKey="simulated"
                                         stroke="#2d6a6d"
-                                        strokeWidth={2}
+                                        strokeWidth={3}
                                         fill="url(#colorForecast)"
-                                        animationDuration={2000}
-                                    />
-                                    <Line
-                                        type="monotone"
-                                        dataKey="lower"
-                                        stroke="#8ba88e"
-                                        strokeDasharray="5 5"
-                                        strokeWidth={1}
-                                        dot={false}
-                                        animationDuration={2000}
+                                        name="Simulated"
+                                        animationDuration={500}
                                     />
                                 </AreaChart>
                             </ResponsiveContainer>
@@ -209,7 +245,8 @@ const PredictiveIntelligence = () => {
 
                     <div className="mt-12 grid md:grid-cols-2 gap-12">
                         <p className="text-sm leading-relaxed text-charcoal/70 serif-display italic font-medium">
-                            Our machine learning models analyze historical patterns and current market sentiment to project your creative trajectory. The "Future of Content" is no longer a guessing game, but a calculated sequence of engagement spikes and retention plateaus.
+                            Adjust the simulation parameters to see how strategic shifts impact your projected growth.
+                            {growthDelta > 0 && <span className="text-primary font-bold block mt-2">Simulation projects an additional +{(growthDelta / 1000000).toFixed(2)}M subscribers.</span>}
                         </p>
                         <div className="flex flex-col justify-end">
                             <div className="flex items-center gap-4 text-sm font-bold border-t border-charcoal pt-6">
@@ -229,14 +266,16 @@ const PredictiveIntelligence = () => {
                                 <circle cx="96" cy="96" fill="none" r="80" stroke="#f3f4f6" strokeWidth="2" />
                                 <motion.circle
                                     initial={{ strokeDashoffset: 502 }}
-                                    animate={{ strokeDashoffset: 125 }}
-                                    transition={{ duration: 2, ease: "easeOut" }}
+                                    animate={{ strokeDashoffset: 502 - (502 * (0.75 * simMultiplier > 1 ? 1 : 0.75 * simMultiplier)) }}
+                                    transition={{ duration: 1, ease: "easeOut" }}
                                     cx="96" cy="96" fill="none" r="80" stroke="#c06c52" strokeDasharray="502" strokeWidth="4"
                                 />
                             </svg>
                             <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                <span className="serif-display text-5xl font-black">75<span className="text-2xl">%</span></span>
-                                <span className="text-[8px] uppercase tracking-widest mt-2 text-secondary font-black">High Potential</span>
+                                <span className="serif-display text-5xl font-black">{Math.min(100, Math.round(75 * simMultiplier))}<span className="text-2xl">%</span></span>
+                                <span className="text-[8px] uppercase tracking-widest mt-2 text-secondary font-black">
+                                    {simMultiplier > 1.1 ? "Very High" : "High Potential"}
+                                </span>
                             </div>
                         </div>
                         <p className="mt-12 serif-display italic text-base text-muted-gray font-medium">"A calculated risk worth taking."</p>
@@ -248,15 +287,24 @@ const PredictiveIntelligence = () => {
                             <div key={s.label} className="space-y-4">
                                 <div className="flex justify-between text-[10px] uppercase tracking-widest font-black">
                                     <span className="text-charcoal/60">{s.label}</span>
-                                    <span className="text-primary">{s.value}</span>
+                                    <span className="text-primary">{s.display}</span>
                                 </div>
-                                <div className="h-[1px] w-full bg-charcoal/10 relative">
-                                    <div className="absolute top-1/2 left-1/3 w-3 h-3 bg-charcoal rounded-full -translate-y-1/2" />
-                                </div>
+                                <input
+                                    type="range"
+                                    min={s.min}
+                                    max={s.max}
+                                    step={s.step}
+                                    value={s.value}
+                                    onChange={(e) => setSimParams(prev => ({ ...prev, [s.param]: parseFloat(e.target.value) }))}
+                                    className="w-full h-1 bg-charcoal/10 rounded-lg appearance-none cursor-pointer accent-primary"
+                                />
                             </div>
                         ))}
-                        <button className="w-full py-4 bg-charcoal text-white text-[10px] font-black uppercase tracking-[0.3em] hover:bg-primary transition-colors flex items-center justify-center gap-2">
-                            Recalculate <Zap size={14} />
+                        <button
+                            onClick={() => setSimParams({ frequency: 1, adSpend: 1, sentiment: 1 })}
+                            className="w-full py-4 bg-charcoal text-white text-[10px] font-black uppercase tracking-[0.3em] hover:bg-primary transition-colors flex items-center justify-center gap-2"
+                        >
+                            Reset Logic <Zap size={14} />
                         </button>
                     </div>
                 </div>

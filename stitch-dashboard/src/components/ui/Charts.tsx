@@ -2,7 +2,7 @@ import React from 'react';
 import {
     AreaChart, Area, BarChart, Bar, LineChart, Line,
     XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-    PieChart, Pie, Cell, Legend
+    PieChart, Pie, Cell, Legend, Brush, ReferenceLine
 } from 'recharts';
 import { motion } from 'framer-motion';
 
@@ -243,11 +243,15 @@ export const PerformanceChart: React.FC<PerformanceChartProps> = ({ data }) => {
                         dataKey="engagement"
                         stroke="#c06c52"
                         strokeWidth={2}
-                        strokeDasharray="5 5"
-                        dot={{ fill: '#c06c52', strokeWidth: 2, r: 4 }}
-                        animationDuration={2000}
-                        animationBegin={500}
                         name="Engagement %"
+                    />
+                    <ReferenceLine y={0} stroke="#000" />
+                    <Brush
+                        dataKey="name"
+                        height={30}
+                        stroke="#2d6a6d"
+                        fill="#f7f7f7"
+                        tickFormatter={() => ""}
                     />
                 </LineChart>
             </ResponsiveContainer>

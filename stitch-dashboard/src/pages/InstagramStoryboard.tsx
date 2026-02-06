@@ -2,25 +2,23 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { PlayCircle, Camera, Search, ChevronRight, Loader2, Instagram, Users, Heart, TrendingUp } from 'lucide-react';
-import { analyticsApi } from '../lib/api';
-import { SentimentPieChart, EngagementBarChart } from '../components/ui/Charts';
+import { analyticsApi } from '@/lib/api';
+import { SentimentPieChart, EngagementBarChart } from '@/components/ui/Charts';
+
+import { useCreator } from '@/context/CreatorContext';
 
 const InstagramStoryboard = () => {
-    const [selectedAccountId, setSelectedAccountId] = useState<string | null>(null);
-
-    const { data: accounts } = useQuery<any[]>({
-        queryKey: ['instagram-accounts'],
-        queryFn: analyticsApi.listInstagramAccounts,
-    });
-
-    const accountId = selectedAccountId || accounts?.[0]?.instagram_id;
-    const selectedAccount = accounts?.find((a: any) => a.instagram_id === accountId);
+    const { selectedCreatorId } = useCreator();
+    const accountId = selectedCreatorId;
 
     const { data: instagramData, isLoading: metricsLoading } = useQuery<any>({
         queryKey: ['instagram-metrics', accountId],
         queryFn: () => analyticsApi.getInstagramMetrics(accountId!),
         enabled: !!accountId,
     });
+
+    // Use instagramData as selectedAccount source if list is removed
+    const selectedAccount = instagramData;
 
     const { data: posts, isLoading: postsLoading } = useQuery<any[]>({
         queryKey: ['instagram-posts', accountId],
@@ -150,20 +148,7 @@ const InstagramStoryboard = () => {
                         </div>
                     )}
 
-                    {/* Account Selector */}
-                    {accounts && accounts.length > 1 && (
-                        <select
-                            value={accountId || ''}
-                            onChange={(e) => setSelectedAccountId(e.target.value)}
-                            className="w-full text-[10px] uppercase tracking-widest font-bold border border-charcoal/20 p-2 bg-white"
-                        >
-                            {accounts.map((acc: any) => (
-                                <option key={acc.instagram_id} value={acc.instagram_id}>
-                                    @{acc.username}
-                                </option>
-                            ))}
-                        </select>
-                    )}
+                    {/* Account Selector - Removed in favor of Global Context */}
                 </div>
             </header>
 

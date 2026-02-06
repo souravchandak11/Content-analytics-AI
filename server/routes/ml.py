@@ -11,6 +11,10 @@ from loguru import logger
 from src.database import get_db_session
 from src.database.queries import YouTubeRepository
 from src.ml import ViralPredictor, GrowthForecaster, SentimentAnalyzer
+import os
+import random
+from datetime import datetime, timedelta
+from seed_data.real_world_creators import ALL_YOUTUBE_CREATORS, MRBEAST_DATA
 
 router = APIRouter()
 
@@ -112,6 +116,30 @@ async def forecast_subscribers(
     periods: int = Query(30, ge=7, le=90)
 ):
     """Forecast subscriber growth."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        # Generate mock forecast
+        creator = next((data for name, data in ALL_YOUTUBE_CREATORS.items() if data.get('channel_id') == channel_id), MRBEAST_DATA)
+        current_subs = creator.get('subscribers', 1000000)
+        
+        forecast_data = []
+        base_date = datetime.now()
+        
+        for i in range(periods):
+            future_date = base_date + timedelta(days=i)
+            # Simple linear growth model with some noise
+            growth_rate = 1.0005 # 0.05% daily growth
+            predicted = current_subs * (growth_rate ** i)
+            noise = random.uniform(-0.001, 0.001) * predicted
+            
+            forecast_data.append({
+                "ds": future_date.isoformat(),
+                "yhat": int(predicted + noise),
+                "yhat_lower": int((predicted + noise) * 0.99),
+                "yhat_upper": int((predicted + noise) * 1.01)
+            })
+            
+        return {"forecast": forecast_data}
+
     with get_db_session() as session:
         snapshots = YouTubeRepository.get_channel_growth(session, channel_id, days=90)
         
@@ -137,6 +165,27 @@ async def forecast_views(
     periods: int = Query(30, ge=7, le=90)
 ):
     """Forecast total views growth."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        creator = next((data for name, data in ALL_YOUTUBE_CREATORS.items() if data.get('channel_id') == channel_id), MRBEAST_DATA)
+        current_views = creator.get('total_views', 100000000)
+        
+        forecast_data = []
+        base_date = datetime.now()
+        
+        for i in range(periods):
+            future_date = base_date + timedelta(days=i)
+            growth_rate = 1.002
+            predicted = current_views * (growth_rate ** i)
+            
+            forecast_data.append({
+                "ds": future_date.isoformat(),
+                "yhat": int(predicted),
+                "yhat_lower": int(predicted * 0.98),
+                "yhat_upper": int(predicted * 1.02)
+            })
+            
+        return {"forecast": forecast_data}
+
     with get_db_session() as session:
         snapshots = YouTubeRepository.get_channel_growth(session, channel_id, days=90)
         
@@ -162,6 +211,25 @@ async def analyze_video_sentiment(
     limit: int = Query(100, le=500)
 ):
     """Analyze sentiment of video comments."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        return {
+            "video_id": video_id,
+            "total_comments": 450,
+            "sentiment_distribution": {
+                "positive": 65,
+                "neutral": 25,
+                "negative": 10
+            },
+            "positive_ratio": 65.0,
+            "neutral_ratio": 25.0,
+            "negative_ratio": 10.0,
+            "top_comments": [
+                {"text": "This really changed my perspective on the topic!", "author": "User123", "label": "Key Insight"},
+                {"text": "Production quality is insane.", "author": "CreatorFan", "label": "Praise"},
+                {"text": "I disagree with the second point but great video.", "author": "Critic99", "label": "Constructive"}
+            ]
+        }
+
     with get_db_session() as session:
         comments = YouTubeRepository.get_recent_comments(session, video_id, limit=limit)
         

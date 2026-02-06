@@ -13,6 +13,9 @@ from src.database import get_db_session
 from src.database.queries import InstagramRepository
 from src.api import InstagramClient, InstagramAPIError
 from src.etl import DataPipeline
+import os
+import random
+from seed_data.real_world_creators import ALL_INSTAGRAM_CREATORS, INSTAGRAM_THUMBNAILS
 
 router = APIRouter()
 
@@ -76,6 +79,23 @@ async def get_account_posts(
     limit: int = Query(50, le=100)
 ):
     """Get posts for an account."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        # Generate mock posts
+        mock_posts = []
+        for i in range(min(limit, 12)):
+            mock_posts.append({
+                "post_id": f"rec{i}",
+                "caption": f"Always pushing the boundaries! 🚀 #{i}",
+                "media_type": random.choice(["IMAGE", "VIDEO", "CAROUSEL_ALBUM"]),
+                "like_count": random.randint(100000, 5000000),
+                "comments_count": random.randint(1000, 50000),
+                "engagement_rate": random.uniform(2.5, 8.0),
+                "timestamp": datetime.now(),
+                "thumbnail_url": list(INSTAGRAM_THUMBNAILS)[i % len(INSTAGRAM_THUMBNAILS)] if INSTAGRAM_THUMBNAILS else None,
+                "media_url": list(INSTAGRAM_THUMBNAILS)[i % len(INSTAGRAM_THUMBNAILS)] if INSTAGRAM_THUMBNAILS else None
+            })
+        return mock_posts
+
     with get_db_session() as session:
         posts = InstagramRepository.get_account_posts(
             session, instagram_id, limit=limit
@@ -112,6 +132,21 @@ async def get_account_growth(
 async def get_account_stats(instagram_id: str):
     """Get account statistics."""
     from src.analytics import InstagramMetrics
+    
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        account = next((data for name, data in ALL_INSTAGRAM_CREATORS.items() if data.get('instagram_id') == instagram_id), next(iter(ALL_INSTAGRAM_CREATORS.values())))
+        likes = account.get('avg_likes_per_post', 500000)
+        return {
+            "instagram_id": instagram_id,
+            "username": account['username'],
+            "followers_count": account['followers'],
+            "posts_analyzed": 50,
+            "total_likes": likes * 50,
+            "total_comments": likes * 0.02 * 50,
+            "avg_likes_per_post": likes,
+            "avg_comments_per_post": likes * 0.02,
+            "avg_engagement_rate": account.get('engagement_rate', 4.5)
+        }
     
     with get_db_session() as session:
         account = InstagramRepository.get_account(session, instagram_id)

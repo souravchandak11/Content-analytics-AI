@@ -26,12 +26,17 @@ async def lifespan(app: FastAPI):
     # Startup
     logger.info("Starting Content Analytics API...")
     
-    # Initialize database
-    if check_database_connection():
-        init_database()
-        logger.info("Database initialized")
-    else:
-        logger.warning("Database connection failed - running in limited mode")
+    # Initialize database in a way that doesn't block the entire startup if possible
+    # We'll still check it but we want the service to be "up" for health checks
+    try:
+        if check_database_connection():
+            init_database()
+            logger.info("Database initialized")
+        else:
+            logger.warning("Database connection failed - running in limited mode")
+    except Exception as e:
+        logger.error(f"Error during database initialization: {e}")
+        logger.warning("Continuing in limited mode due to startup error")
     
     yield
     
@@ -50,7 +55,7 @@ app = FastAPI(
 )
 
 # CORS middleware
-origins = os.getenv('ALLOWED_ORIGINS', 'http://localhost:3000,http://localhost:8501,http://localhost:5173,http://127.0.0.1:5173,http://localhost:5500,http://127.0.0.1:5500,http://localhost:8080').split(',')
+origins = os.getenv('ALLOWED_ORIGINS', 'https://contentanalyticsai.vercel.app,http://localhost:3000,http://localhost:8501,http://localhost:5173,http://127.0.0.1:5173,http://localhost:5500,http://127.0.0.1:5500,http://localhost:8080').split(',')
 
 app.add_middleware(
     CORSMiddleware,

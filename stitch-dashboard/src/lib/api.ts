@@ -4,6 +4,7 @@ const API_BASE_URL = '/api';
 
 const api = axios.create({
     baseURL: API_BASE_URL,
+    timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
     },
@@ -57,7 +58,7 @@ export interface SentimentData {
 }
 
 export const analyticsApi = {
-    getOverview: () => api.get('/ai/dashboard/summary').then(res => res.data),
+    getOverview: (channelId?: string) => api.get(`/ai/dashboard/summary${channelId ? `?channel_id=${channelId}` : ''}`).then(res => res.data),
     listYoutubeChannels: () => api.get<Channel[]>('/youtube/channels').then(res => res.data),
     getYoutubeMetrics: (channelId: string) => api.get<Channel>(`/analytics/youtube/${channelId}/metrics`).then(res => res.data),
     getYoutubeVideos: (channelId: string) => api.get<Video[]>(`/youtube/channels/${channelId}/videos`).then(res => res.data),

@@ -2,27 +2,26 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { TrendingUp, Users, Eye, BarChart2, CheckCircle2, Star, Loader2, Youtube } from 'lucide-react';
-import MetricCard from '../components/ui/MetricCard';
+import MetricCard from '@/components/ui/MetricCard';
 import { analyticsApi, Channel, Video } from '@/lib/api';
-import { PerformanceChart } from '../components/ui/Charts';
+import { PerformanceChart } from '@/components/ui/Charts';
+
+import { useCreator } from '@/context/CreatorContext';
 
 const YouTubeInsights = () => {
-    const [selectedChannelId, setSelectedChannelId] = useState<string | null>(null);
+    const { selectedCreatorId } = useCreator();
+    const channelId = selectedCreatorId;
 
-    // Fetch all channels to get an ID if not selected
-    const { data: channels } = useQuery<Channel[]>({
-        queryKey: ['youtube-channels'],
-        queryFn: analyticsApi.listYoutubeChannels,
-    });
-
-    const channelId = selectedChannelId || channels?.[0]?.channel_id;
-    const selectedChannel = channels?.find((c: Channel) => c.channel_id === channelId);
-
+    // Fetch channel details (reusing metrics endpoint for basic info or adding a specific endpoint if needed)
+    // For now we assume metrics endpoint returns enough info (Channel interface)
     const { data: youtubeData, isLoading: metricsLoading } = useQuery<Channel>({
         queryKey: ['youtube-metrics', channelId],
         queryFn: () => analyticsApi.getYoutubeMetrics(channelId!),
         enabled: !!channelId,
     });
+
+    // We treat the "selectedChannel" object the same as youtubeData for display purposes
+    const selectedChannel = youtubeData;
 
     const { data: videos, isLoading: videosLoading } = useQuery<Video[]>({
         queryKey: ['youtube-videos', channelId],
@@ -152,20 +151,10 @@ const YouTubeInsights = () => {
                             </div>
                         )}
 
-                        {/* Channel Selector */}
-                        {channels && channels.length > 1 && (
-                            <select
-                                value={channelId || ''}
-                                onChange={(e) => setSelectedChannelId(e.target.value)}
-                                className="w-full text-[10px] uppercase tracking-widest font-bold border border-charcoal/20 p-2 bg-white"
-                            >
-                                {channels.map((ch: Channel) => (
-                                    <option key={ch.channel_id} value={ch.channel_id}>
-                                        {ch.title}
-                                    </option>
-                                ))}
-                            </select>
-                        )}
+                        {/* Channel Selector - Removed in favor of Global Context */}
+                        {/* 
+                         * Global Creator Selector in Navbar controls this now.
+                         */}
                     </div>
                 </div>
             </header>

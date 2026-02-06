@@ -7,10 +7,14 @@ from typing import Optional
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel
 from loguru import logger
+import os
+from seed_data.real_world_creators import MRBEAST_DATA
 
 from src.database import get_db_session
 from src.database.queries import YouTubeRepository, InstagramRepository
 from src.analytics import YouTubeMetrics, InstagramMetrics, TrendAnalyzer
+from seed_data.real_world_creators import MRBEAST_DATA, ALL_YOUTUBE_CREATORS, ALL_INSTAGRAM_CREATORS
+import random
 
 router = APIRouter()
 
@@ -18,6 +22,29 @@ router = APIRouter()
 @router.get("/overview")
 async def get_dashboard_overview():
     """Get aggregated overview metrics for the main dashboard."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        # Use MrBeast Data
+        return {
+            "audience": {
+                "total": MRBEAST_DATA['subscribers'] + 50000000,
+                "youtube": MRBEAST_DATA['subscribers'],
+                "instagram": 50000000,
+                "delta": "+5.2%"
+            },
+            "reach": {
+                "total": MRBEAST_DATA['total_views'],
+                "delta": "+12.8%"
+            },
+            "engagement": {
+                "average": MRBEAST_DATA.get('engagement_rate', 5.6),
+                "delta": "+0.4%"
+            },
+            "platforms": {
+                "youtube_active": 1,
+                "instagram_active": 1
+            }
+        }
+
     with get_db_session() as session:
         # Get count of channels and accounts
         yt_count = YouTubeRepository.get_channels_count(session)
@@ -59,6 +86,24 @@ async def get_youtube_metrics(
     days: int = Query(30, le=365)
 ):
     """Get comprehensive YouTube channel metrics."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        # Find creator by channel_id, default to MrBeast if not found or if checking main dashboard
+        creator = next((data for name, data in ALL_YOUTUBE_CREATORS.items() if data['channel_id'] == channel_id), MRBEAST_DATA)
+        
+        return {
+            "channel_id": channel_id,
+            "title": creator['channel_name'],
+            "subscribers": creator['subscribers'],
+            "stats": {
+                'avg_views': creator.get('avg_views_per_video', 0),
+                'avg_likes': creator.get('avg_likes_per_video', 0),
+                'avg_comments': creator.get('avg_comments_per_video', 0),
+                'avg_engagement': creator.get('engagement_rate', 0)
+            },
+            "health_score": random.uniform(8.5, 9.9), # Dynamic healthy score
+            "period_days": days
+        }
+
     with get_db_session() as session:
         channel = YouTubeRepository.get_channel(session, channel_id)
         if not channel:
@@ -94,6 +139,26 @@ async def get_youtube_trends(
     days: int = Query(30, le=365)
 ):
     """Get trend analysis for YouTube channel."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        creator = next((data for name, data in ALL_YOUTUBE_CREATORS.items() if data['channel_id'] == channel_id), MRBEAST_DATA)
+        base_subs = creator.get('subscribers', 1000000)
+        base_views = creator.get('total_views', 100000000)
+        
+        return {
+            "channel_id": channel_id,
+            "period_days": days,
+            "subscriber_trend": {
+                'trend': 'up',
+                'percentage': 12.5,
+                'history': [int(base_subs * (0.9 + i*0.02)) for i in range(4)]
+            },
+            "views_trend": {
+                'trend': 'up',
+                'percentage': 8.4,
+                'history': [int(base_views * (0.95 + i*0.01)) for i in range(4)]
+            }
+        }
+
     with get_db_session() as session:
         snapshots = YouTubeRepository.get_channel_growth(session, channel_id, days)
         
@@ -123,6 +188,29 @@ async def get_viral_videos(
     threshold: float = Query(2.0, ge=1.0, le=10.0)
 ):
     """Identify viral videos for a channel."""
+    """Identify viral videos for a channel."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        creator = next((data for name, data in ALL_YOUTUBE_CREATORS.items() if data['channel_id'] == channel_id), MRBEAST_DATA)
+        recent_viral = creator.get('recent_viral_videos', [])
+        
+        avg_views = creator.get('avg_views_per_video', 1000000)
+        
+        return {
+            "channel_id": channel_id,
+            "avg_views": int(avg_views),
+            "threshold": threshold,
+            "threshold_views": int(avg_views * threshold),
+            "viral_count": len(recent_viral),
+            "viral_videos": [
+                {
+                    "video_id": v.get('video_id', 'v1'),
+                    "title": v.get('title', 'Viral Video'),
+                    "views": v.get('views', 0),
+                    "virality_factor": round(v.get('views', 0) / avg_views, 2) if avg_views > 0 else 0
+                } for v in recent_viral
+            ]
+        }
+
     with get_db_session() as session:
         from src.database.models import YouTubeVideo
         
@@ -161,6 +249,26 @@ async def get_instagram_metrics(
     days: int = Query(30, le=365)
 ):
     """Get comprehensive Instagram account metrics."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        # Find account by ID or just return MrBeast's IG data if not found (or if UC ID passed)
+        account = next((data for name, data in ALL_INSTAGRAM_CREATORS.items() if data.get('instagram_id') == instagram_id), None)
+        
+        # If no direct match (e.g. UC ID passed), try to find by cross-referencing name or just use MrBeast
+        if not account:
+             # Just use MrBeast IG as fallback for any unknown ID in mock mode to keep UI alive
+             account = next(iter(ALL_INSTAGRAM_CREATORS.values()))
+
+        return {
+            "instagram_id": instagram_id,
+            "username": account['username'],
+            "followers": account['followers'],
+            "posts_analyzed": 50,
+            "total_likes": int(account.get('avg_likes_per_post', 100000) * 50),
+            "total_comments": int(account.get('avg_likes_per_post', 100000) * 0.01 * 50),
+            "avg_engagement_rate": account.get('engagement_rate', 3.5),
+            "period_days": days
+        }
+
     with get_db_session() as session:
         account = InstagramRepository.get_account(session, instagram_id)
         if not account:
@@ -191,6 +299,19 @@ async def get_instagram_metrics(
 @router.get("/instagram/{instagram_id}/best-times")
 async def get_best_posting_times(instagram_id: str):
     """Analyze best posting times for Instagram account."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        return {
+            "instagram_id": instagram_id,
+            "posts_analyzed": 50,
+            "best_day": "Wednesday",
+            "best_time": "18:00",
+            "heatmap": [
+                {"day": "Monday", "hour": 18, "engagement": 4.5},
+                {"day": "Wednesday", "hour": 18, "engagement": 5.2},
+                {"day": "Friday", "hour": 12, "engagement": 4.8}
+            ]
+        }
+
     with get_db_session() as session:
         posts = InstagramRepository.get_account_posts(session, instagram_id, limit=100)
         
@@ -235,6 +356,35 @@ async def compare_channels(
         raise HTTPException(status_code=400, detail="Maximum 10 IDs allowed")
     
     results = []
+
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        # Generate mock comparison
+        for i, cid in enumerate(id_list):
+            if platform == 'youtube':
+                creator = next((data for name, data in ALL_YOUTUBE_CREATORS.items() if data['channel_id'] == cid), MRBEAST_DATA)
+                results.append({
+                    "id": cid,
+                    "name": creator.get('channel_name', f"Channel {i}"),
+                    "subscribers": creator.get('subscribers', 1000000 * (i+1)),
+                    "total_views": creator.get('total_views', 100000000 * (i+1)),
+                    "avg_views": creator.get('avg_views_per_video', 500000),
+                    "avg_engagement": creator.get('engagement_rate', 3.5 + (i * 0.5))
+                })
+            else:
+                creator = next((data for name, data in ALL_INSTAGRAM_CREATORS.items() if data.get('instagram_id') == cid), None) or next(iter(ALL_INSTAGRAM_CREATORS.values()))
+                results.append({
+                    "id": cid,
+                    "name": creator.get('username', f"User {i}"),
+                    "followers": creator.get('followers', 500000),
+                    "media_count": creator.get('posts', 100),
+                    "avg_engagement": creator.get('engagement_rate', 2.5)
+                })
+        
+        return {
+            "platform": platform,
+            "compared_count": len(results),
+            "data": results
+        }
     
     with get_db_session() as session:
         if platform == 'youtube':

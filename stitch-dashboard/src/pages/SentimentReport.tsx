@@ -3,20 +3,22 @@ import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { BarChart3, MessageSquare, Heart, Share2, Quote, ArrowUpRight, Loader2, Youtube, TrendingUp } from 'lucide-react';
 import { analyticsApi, Channel, Video, SentimentData, Comment } from '@/lib/api';
-import { SentimentPieChart } from '../components/ui/Charts';
+import { SentimentPieChart } from '@/components/ui/Charts';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 
+import { useCreator } from '@/context/CreatorContext';
+
 const SentimentReport = () => {
-    const [selectedChannelId, setSelectedChannelId] = useState<string | null>(null);
+    const { selectedCreatorId } = useCreator();
     const [selectedVideoIndex, setSelectedVideoIndex] = useState<number>(0);
+    const channelId = selectedCreatorId;
 
-    const { data: channels } = useQuery<Channel[]>({
-        queryKey: ['youtube-channels'],
-        queryFn: analyticsApi.listYoutubeChannels,
+    // Fetch channel info
+    const { data: selectedChannel } = useQuery<Channel>({
+        queryKey: ['youtube-metrics', channelId],
+        queryFn: () => analyticsApi.getYoutubeMetrics(channelId!),
+        enabled: !!channelId,
     });
-
-    const channelId = selectedChannelId || channels?.[0]?.channel_id;
-    const selectedChannel = channels?.find((c: Channel) => c.channel_id === channelId);
 
     const { data: videos } = useQuery<Video[]>({
         queryKey: ['youtube-videos', channelId],

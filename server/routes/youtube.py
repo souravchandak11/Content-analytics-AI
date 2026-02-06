@@ -13,6 +13,9 @@ from src.database import get_db_session
 from src.database.queries import YouTubeRepository
 from src.api import YouTubeClient, QuotaExceededError
 from src.etl import DataPipeline
+import os
+import random
+from seed_data.real_world_creators import ALL_YOUTUBE_CREATORS, YOUTUBE_THUMBNAILS, MRBEAST_DATA
 
 router = APIRouter()
 
@@ -62,6 +65,17 @@ async def list_channels():
 @router.get("/channels/{channel_id}", response_model=ChannelResponse)
 async def get_channel(channel_id: str):
     """Get YouTube channel details."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        creator = next((data for name, data in ALL_YOUTUBE_CREATORS.items() if data.get('channel_id') == channel_id), MRBEAST_DATA)
+        return {
+            "channel_id": channel_id,
+            "title": creator['channel_name'],
+            "subscribers": creator['subscribers'],
+            "total_views": creator['total_views'],
+            "total_videos": creator.get('total_videos', 1000),
+            "thumbnail_url": creator.get('thumbnail_url', YOUTUBE_THUMBNAILS[0])
+        }
+
     with get_db_session() as session:
         channel = YouTubeRepository.get_channel(session, channel_id)
         if not channel:
@@ -76,6 +90,21 @@ async def get_channel_videos(
     offset: int = Query(0, ge=0)
 ):
     """Get videos for a channel."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        mock_videos = []
+        for i in range(min(limit, 24)):
+            mock_videos.append({
+                "video_id": f"v{i}",
+                "title": f"MOCK VIDEO: Epic Challenge #{i}",
+                "views": random.randint(1000000, 50000000),
+                "likes": random.randint(50000, 2000000),
+                "comments": random.randint(1000, 50000),
+                "engagement_rate": random.uniform(2.0, 10.0),
+                "published_at": datetime.now() - timedelta(days=i*3),
+                "thumbnail_url": YOUTUBE_THUMBNAILS[i % len(YOUTUBE_THUMBNAILS)]
+            })
+        return mock_videos
+
     with get_db_session() as session:
         videos = YouTubeRepository.get_channel_videos(
             session, channel_id, limit=limit, offset=offset
@@ -90,6 +119,22 @@ async def get_top_videos(
     limit: int = Query(10, le=50)
 ):
     """Get top performing videos by metric."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        # Reuse get_videos mock logic but sort it
+        mock_videos = []
+        for i in range(min(limit, 10)):
+            mock_videos.append({
+                "video_id": f"top_v{i}",
+                "title": f"Top Hit #{i}: Insane Stunt",
+                "views": random.randint(10000000, 100000000),
+                "likes": random.randint(500000, 5000000),
+                "comments": random.randint(10000, 100000),
+                "engagement_rate": random.uniform(5.0, 15.0),
+                "published_at": datetime.now() - timedelta(days=i*10),
+                "thumbnail_url": YOUTUBE_THUMBNAILS[i % len(YOUTUBE_THUMBNAILS)]
+            })
+        return mock_videos
+
     with get_db_session() as session:
         videos = YouTubeRepository.get_top_videos(
             session, channel_id, metric=metric, limit=limit
@@ -162,6 +207,31 @@ async def collect_channel_data(request: CollectionRequest):
 @router.get("/search")
 async def search_channels(q: str = Query(..., min_length=2)):
     """Search for YouTube channels."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        query = q.lower()
+        results = []
+        for name, data in ALL_YOUTUBE_CREATORS.items():
+            if query in name.lower() or query in data.get('channel_name', '').lower():
+                results.append({
+                    "channel_id": data['channel_id'],
+                    "title": data['channel_name'],
+                    "thumbnail_url": data.get('thumbnail_url', YOUTUBE_THUMBNAILS[0]),
+                    "description": data.get('category', 'Creator'),
+                    "subscriber_count": data['subscribers']
+                })
+        
+        # If no results in mock data, return empty or generic mock
+        if not results and query in "mrbeast": # Fallback
+             results.append({
+                    "channel_id": MRBEAST_DATA['channel_id'],
+                    "title": MRBEAST_DATA['channel_name'],
+                    "thumbnail_url": MRBEAST_DATA['thumbnail_url'],
+                    "description": MRBEAST_DATA['category'],
+                    "subscriber_count": MRBEAST_DATA['subscribers']
+                })
+
+        return {"results": results, "quota_used": 0}
+
     try:
         client = YouTubeClient()
         results = client.search_channels(q, max_results=10)

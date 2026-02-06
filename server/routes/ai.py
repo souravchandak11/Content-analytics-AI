@@ -12,6 +12,9 @@ from src.database import get_db_session
 from src.database.queries import YouTubeRepository, InstagramRepository
 from src.database.models import InstagramAccount
 from src.ml import ContentRecommender, CompetitorAnalyzer, TopicClusterer
+import os
+from src.utils.mock_data import YOUTUBE_THUMBNAILS, INSTAGRAM_THUMBNAILS
+from seed_data.real_world_creators import MRBEAST_DATA, ISHOWSPEED_DATA, ALL_YOUTUBE_CREATORS, ALL_INSTAGRAM_CREATORS
 
 router = APIRouter()
 
@@ -32,6 +35,24 @@ class TopicClusterRequest(BaseModel):
 @router.get("/recommendations/{channel_id}")
 async def get_all_recommendations(channel_id: str):
     """Get comprehensive content recommendations for a channel."""
+    """Get comprehensive content recommendations for a channel."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        return {
+            'topics': [
+                {'topic': 'Challenge', 'score': 0.95, 'growth': 0.12},
+                {'topic': 'Philanthropy', 'score': 0.88, 'growth': 0.08},
+                {'topic': 'Survival', 'score': 0.85, 'growth': 0.15}
+            ],
+            'timing': {'best_day': 'Saturday', 'best_time': '16:00'},
+            'formats': {'short_form': 0.3, 'long_form': 0.7},
+            'tags': ['challenge', 'money', 'survival', 'beast'],
+            'ideas': [
+                {'title': 'Survive 100 Days in Desert', 'score': 0.98},
+                {'title': 'Last To Leave Circle Wins $500,000', 'score': 0.96},
+                {'title': 'I Bought A Private Island', 'score': 0.92}
+            ]
+        }
+
     with get_db_session() as session:
         videos = YouTubeRepository.get_channel_videos(session, channel_id, limit=200)
         if not videos:
@@ -56,6 +77,21 @@ async def get_all_recommendations(channel_id: str):
 @router.post("/competitor/compare")
 async def compare_with_competitors(request: CompetitorCompareRequest):
     """Compare a channel with multiple competitors."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        return {
+            'comparison': {
+                'metrics': {
+                    'subscribers': {'you': MRBEAST_DATA['subscribers'], 'competitors': [111000000], 'gap': '+232M'},
+                    'views': {'you': MRBEAST_DATA['total_views'], 'competitors': [29000000000], 'gap': '+32B'},
+                    'engagement': {'you': MRBEAST_DATA['engagement_rate'], 'competitors': [4.8], 'gap': '+0.8%'}
+                }
+            },
+            'gaps': [
+                {'topic': 'Gaming', 'opportunity': 0.85},
+                {'topic': 'Vlogs', 'opportunity': 0.65}
+            ]
+        }
+
     with get_db_session() as session:
         # Helper to safely serialize SQLA objects
         def to_dict(obj):
@@ -92,6 +128,15 @@ async def compare_with_competitors(request: CompetitorCompareRequest):
 @router.get("/topics/cluster/{channel_id}")
 async def get_topic_clusters(channel_id: str, limit: int = Query(200, le=500)):
     """Cluster channel content into topics."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        return {
+             'clusters': [
+                 {'id': 1, 'name': 'Challenges', 'videos': 150, 'avg_views': 85000000},
+                 {'id': 2, 'name': 'Philanthropy', 'videos': 80, 'avg_views': 65000000},
+                 {'id': 3, 'name': 'Gaming', 'videos': 45, 'avg_views': 25000000}
+             ]
+        }
+
     with get_db_session() as session:
         videos = YouTubeRepository.get_channel_videos(session, channel_id, limit=limit)
         if not videos:
@@ -100,8 +145,95 @@ async def get_topic_clusters(channel_id: str, limit: int = Query(200, le=500)):
         videos_data = [{k: v for k, v in v.__dict__.items() if not k.startswith('_')} for v in videos]
         return topic_clusterer.cluster_content(videos_data)
 @router.get("/dashboard/summary")
-async def get_dashboard_summary():
+async def get_dashboard_summary(channel_id: Optional[str] = None):
     """Get aggregated summary data for the executive dashboard with real creator analytics."""
+    if os.getenv('USE_MOCK_DATA', 'False').lower() == 'true':
+        # Select creator: Look up by ID, or default to MrBeast
+        creator = MRBEAST_DATA
+        if channel_id:
+            found = next((data for name, data in ALL_YOUTUBE_CREATORS.items() if data['channel_id'] == channel_id), None)
+            if found:
+                creator = found
+            else:
+                 # Check Instagram
+                 found_ig = next((data for name, data in ALL_INSTAGRAM_CREATORS.items() if data.get('instagram_id') == channel_id), None)
+                 if found_ig:
+                     creator = found_ig
+                     # Normalize fields for Instagram to match the expected structure
+                     creator['channel_name'] = creator['username']
+                     creator['subscribers'] = creator['followers']
+                     creator['total_views'] = creator.get('avg_likes_per_post', 0) * creator.get('posts', 0) # Rough estimate
+                     creator['total_videos'] = creator['posts']
+                     creator['category'] = creator['category']
+                     creator['country'] = 'Global'
+                     creator['thumbnail_url'] = creator.get('profile_picture_url', '')
+
+        recent_videos = creator.get('recent_viral_videos', [])
+        
+        # Format top performers from real data if available
+        top_performers = []
+        if recent_videos:
+            for v in recent_videos[:3]:
+                top_performers.append({
+                    'video_id': v.get('video_id', 'v1'),
+                    'title': v.get('title', 'Video'),
+                    'views': v.get('views', 0),
+                    'likes': v.get('likes', 0),
+                    'engagement_rate': round(v.get('likes', 0) / v.get('views', 1) * 100, 2) if v.get('views', 0) > 0 else 0,
+                    'thumbnail_url': v.get('thumbnail_url', YOUTUBE_THUMBNAILS[0])
+                })
+        else:
+             top_performers = [
+                    {'video_id': 'v1', 'title': f'Top Video for {creator["channel_name"]}', 'views': int(creator.get('avg_views_per_video', 1000000) * 1.5), 'likes': int(creator.get('avg_likes_per_video', 50000) * 1.5), 'engagement_rate': creator.get('engagement_rate', 5.0), 'thumbnail_url': YOUTUBE_THUMBNAILS[0]},
+                    {'video_id': 'v2', 'title': 'Viral Hit 2025', 'views': int(creator.get('avg_views_per_video', 1000000) * 1.2), 'likes': int(creator.get('avg_likes_per_video', 50000) * 1.2), 'engagement_rate': creator.get('engagement_rate', 5.0) * 1.1, 'thumbnail_url': YOUTUBE_THUMBNAILS[1]},
+                    {'video_id': 'v3', 'title': 'My Crazy Experiment', 'views': int(creator.get('avg_views_per_video', 1000000) * 0.9), 'likes': int(creator.get('avg_likes_per_video', 50000) * 0.9), 'engagement_rate': creator.get('engagement_rate', 5.0) * 0.9, 'thumbnail_url': YOUTUBE_THUMBNAILS[2]},
+                ]
+
+        return {
+            'creator_info': {
+                'name': creator['channel_name'],
+                'platform': 'YouTube' if 'subscribers' in creator else 'Instagram',
+                'image': creator.get('thumbnail_url', creator.get('profile_picture_url', '')),
+                'subscribers': creator.get('subscribers', creator.get('followers', 0)),
+                'total_views': creator.get('total_views', 0),
+                'channel_id': creator.get('channel_id', creator.get('instagram_id', 'unknown')),
+                'description': f"{creator.get('category', 'Creator')} | {creator.get('country', 'Global')}"
+            },
+            'metrics': {
+                'total_audience': creator['subscribers'] + 50000000, 
+                'total_reach': creator['total_views'],
+                'engagement_avg': creator.get('engagement_rate', 5.6),
+                'asset_value_est': 85000000 
+            },
+            'performance': {
+                'top_performers': top_performers,
+                'bottom_performers': [
+                    {'video_id': 'v4', 'title': 'Experiment Gone Wrong', 'views': 4500000, 'likes': 200000, 'engagement_rate': 2.1, 'thumbnail_url': YOUTUBE_THUMBNAILS[3]},
+                ],
+                'total_videos_analyzed': creator['total_videos']
+            },
+            'feed': [
+                {'type': 'YouTube', 'title': 'Extreme Hide and Seek', 'description': 'Winning $1,000,000...', 'views': 45000000, 'engagement': 5.8, 'timestamp': '2024-03-15T10:00:00Z', 'thumbnail_url': YOUTUBE_THUMBNAILS[4], 'id': 'yt1'},
+                {'type': 'Instagram', 'title': 'New Merch Drop', 'description': 'Check out the new Feastables!', 'views': 2500000, 'engagement': 4.2, 'timestamp': '2024-03-14T14:30:00Z', 'thumbnail_url': INSTAGRAM_THUMBNAILS[0], 'id': 'ig1'},
+            ],
+            'growth_forecast': 4.5,
+            'retention_index': 92.4,
+            'charts': {
+                'growth': {
+                    'labels': ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+                    'data': [340000000, 340500000, 341200000, 342000000, 342500000, 343000000]
+                },
+                'sentiment': {
+                    'score': 88,
+                    'distribution': {'positive': 75, 'neutral': 15, 'negative': 10}
+                },
+                'competitor': {
+                    'you': [90, 95, 88, 92, 96],
+                    'avg': [65, 70, 75, 40, 60]
+                }
+            }
+        }
+
     with get_db_session() as session:
         # 1. YouTube Stats
         yt_channels = YouTubeRepository.get_all_channels(session)
