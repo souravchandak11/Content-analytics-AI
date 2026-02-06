@@ -24,6 +24,13 @@ const PredictiveIntelligence = () => {
         enabled: !!channelId,
     });
 
+    // Simulation State
+    const [simParams, setSimParams] = useState({
+        frequency: 1, // 1.0 = baseline (e.g. 3 posts/week)
+        adSpend: 1,   // 1.0 = baseline ($1.2k)
+        sentiment: 1  // 1.0 = baseline (Positive)
+    });
+
     if (isLoading) {
         return (
             <div className="min-h-[60vh] flex items-center justify-center">
@@ -32,12 +39,17 @@ const PredictiveIntelligence = () => {
         );
     }
 
-    // Simulation State
-    const [simParams, setSimParams] = useState({
-        frequency: 1, // 1.0 = baseline (e.g. 3 posts/week)
-        adSpend: 1,   // 1.0 = baseline ($1.2k)
-        sentiment: 1  // 1.0 = baseline (Positive)
-    });
+    if (!selectedChannel || !forecast?.forecast) {
+        return (
+            <div className="min-h-[60vh] flex flex-col items-center justify-center text-center p-8">
+                <TrendingUp className="w-12 h-12 text-secondary mb-4" />
+                <h2 className="serif-display text-4xl mb-2 italic">Data Insufficient</h2>
+                <p className="text-charcoal/60 max-w-md">We need at least 7 days of historical data to generate predictive models. Please switch to Mock Data mode or connect a data source.</p>
+            </div>
+        );
+    }
+
+
 
     // Simulation effect multipliers (simplified model)
     // Frequency: +20% growth per +1x frequency

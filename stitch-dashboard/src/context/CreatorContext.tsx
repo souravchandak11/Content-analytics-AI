@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 // Hardcoded list of creators available in our Mock Data
-export const AVAILABLE_CREATORS = [
+const AVAILABLE_CREATORS = [
     { id: 'UCX6OQ3DkcsbYNE6H8uQQuVA', name: 'MrBeast', platform: 'YouTube' },
     { id: 'UCzJo1FjvvTYrQl2m7hrxOyw', name: 'IShowSpeed', platform: 'YouTube' },
     { id: 'UCq-Fj5jknLsUf-MWSy4_brA', name: 'T-Series', platform: 'YouTube' },
@@ -42,6 +42,7 @@ export const CreatorProvider = ({ children }: { children: ReactNode }) => {
     );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useCreator = () => {
     const context = useContext(CreatorContext);
     if (context === undefined) {
