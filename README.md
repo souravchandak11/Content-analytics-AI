@@ -8,8 +8,6 @@
 
 > A comprehensive analytics platform that tracks YouTube and Instagram creator performance, predicts viral content using machine learning, and delivers actionable insights through an interactive dashboard.
 
-**Live Demo:** [content-analytics.streamlit.app](#) | **Documentation:** [Wiki](#) | **Portfolio:** [Your Site](#)
-
 ---
 
 ## 📋 Table of Contents
@@ -99,25 +97,25 @@ An intelligent analytics platform that:
 
 **Main Dashboard - Overview**
 **Main Dashboard - Overview**
-![Main Dashboard Overview](assets/images/dashboard-overview.png)
+<img width="1802" height="877" alt="Screenshot 2026-02-06 144513" src="https://github.com/user-attachments/assets/1f52c3c5-f740-4532-b9f6-733c2708c8ab" />
+
 *Real-time performance metrics and viewer analytics*
 
 **ML Prediction Interface**
 **ML Prediction Interface**
-![ML Prediction Interface](assets/images/ml-prediction.png)
-*Viral probability forecasting engine*
+<img width="1777" height="881" alt="Screenshot 2026-02-06 172429" src="https://github.com/user-attachments/assets/a9612e2f-a4d9-4284-87a5-8b9e2b0ec5d9" />
 
-### Video Demo
-📹 **[Watch 3-Minute Demo Video](#)** - See the platform in action
+*Viral probability forecasting engine*
 
 <br>
 
 **Additional Views**
 | Analytics Breakdown | Audience Sentiment |
 |-------------------|-------------------|
-| ![Analytics Breakdown](assets/images/analytics-breakdown.png) | ![Audience Sentiment](assets/images/audience-sentiment.png) |
+<img width="1829" height="847" alt="Screenshot 2026-02-06 144655" src="https://github.com/user-attachments/assets/f7033f18-7422-45a1-aba5-36f95bab01f4" />
 
----
+---<img width="1820" height="890" alt="Screenshot 2026-02-06 144554" src="https://github.com/user-attachments/assets/21de8d55-3390-4848-85bd-ee7e6988afcd" />
+
 
 ## 🛠️ Tech Stack
 
